@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
+import Banner from "../components/Banner";
+import Overview from "../components/Overview";
+import TwoStatic from "../components/TwoStatic";
 
 const HomePage = () => {
-    return (
-        <div>
-            <h1>This is HomePage</h1>
-        </div>
-    );
+  return (
+    <div>
+        <Banner/>
+        <Overview/>
+        <TwoStatic/>
+    </div>
+  );
 };
 
 export default HomePage;
