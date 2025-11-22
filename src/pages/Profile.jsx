@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useAuth } from "../contexts/useAuth";
 /* eslint-disable-next-line no-unused-vars */
 import { useSpring, animated } from "@react-spring/web";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Profile = () => {
   const { user, updateUserProfile } = useAuth();
   const [editing, setEditing] = useState(false);
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+  const [saving, setSaving] = useState(false);
 
   const animation = useSpring({
     opacity: editing ? 1 : 0,
@@ -15,9 +17,11 @@ const Profile = () => {
     config: { tension: 200, friction: 20 },
   });
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    updateUserProfile({ displayName, photoURL });
+    setSaving(true);
+    await updateUserProfile({ displayName, photoURL });
+    setSaving(false);
     setEditing(false);
   };
   return (
@@ -80,8 +84,9 @@ const Profile = () => {
                   <button
                     type="submit"
                     className="btn btn-success flex-1 bg-purple-500 border-none"
+                    disabled={saving}
                   >
-                    Save
+                    {saving ? <LoadingSpinner /> : "Save"}
                   </button>
                   <button
                     type="button"

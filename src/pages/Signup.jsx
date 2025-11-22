@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/useAuth";
 import { toast } from "react-toastify";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Signup = () => {
   const { signupUser, googleSignin } = useAuth();
@@ -13,9 +14,11 @@ const Signup = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const redirectTo = location.state?.from?.pathname || "/";
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
     const fullName = e.target.fullName?.value;
     const email = e.target.email?.value;
     const photoURL = e.target.photoURL?.value;
@@ -62,8 +65,12 @@ const Signup = () => {
       toast.error("Please enter a valid email address");
       return;
     }
-    await signupUser(email, password, fullName, photoURL);
-    navigate(redirectTo, { replace: true });
+    try {
+      await signupUser(email, password, fullName, photoURL);
+      navigate("/");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleGoogleSignin = async () => {
@@ -153,8 +160,11 @@ const Signup = () => {
               </span>
             </div>
 
-            <button className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition cursor-pointer">
-              Sign Up
+            <button
+              className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition cursor-pointer"
+              disabled={submitting}
+            >
+              {submitting ? <LoadingSpinner /> : "Sign Up"}
             </button>
           </form>
           <div className="flex items-center my-4">

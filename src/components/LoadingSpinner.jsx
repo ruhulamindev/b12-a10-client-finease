@@ -2,9 +2,9 @@ import React from 'react';
 
 const LoadingSpinner = () => {
     return (
-        <div>
-            <h1>LoadingSpinner</h1>
-        </div>
+    <div>
+      <span className="loading loading-infinity loading-xl"></span>
+    </div>
     );
 };
 

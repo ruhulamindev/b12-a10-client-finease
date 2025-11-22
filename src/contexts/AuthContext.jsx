@@ -10,6 +10,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../fairbase/fairbase.config";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider } from "firebase/auth";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const AuthContext = createContext();
 
@@ -91,7 +92,7 @@ export const AuthProvider = ({ children }) => {
       updateUserProfile,
     }}
   >
-    {!loading && children}
+    {loading ? <LoadingSpinner /> : children}
   </AuthContext.Provider>
 );
 };

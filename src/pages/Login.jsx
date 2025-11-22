@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/useAuth";
 import { toast } from "react-toastify";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Login = () => {
   const { signinUser, googleSignin } = useAuth();
@@ -13,9 +14,11 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const redirectTo = location.state?.from || "/";
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSignin = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -32,8 +35,12 @@ const Login = () => {
       return;
     }
 
-    await signinUser(email, password);
-    navigate(redirectTo, { replace: true });
+    try {
+      await signinUser(email, password);
+      navigate("/");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleGoogleSignin = async () => {
@@ -101,8 +108,9 @@ const Login = () => {
             <button
               type="submit"
               className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition cursor-pointer"
+              disabled={submitting}
             >
-              Login
+              {submitting ? <LoadingSpinner /> : "Login"}
             </button>
           </form>
           <div className="flex items-center my-4">
