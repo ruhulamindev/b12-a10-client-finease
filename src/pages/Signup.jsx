@@ -20,7 +20,7 @@ const Signup = () => {
     `}
         </style>
         <div className="w-full mx-auto max-w-md bg-white p-8 rounded-xl shadow-lg">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          <h2 className="text-3xl font-bold text-center text-purple-600 mb-6">
             Sign Up
           </h2>
           <form className="space-y-4">
@@ -79,7 +79,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <button className="btn btn-primary w-full">Sign Up</button>
+            <button className="w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600 transition cursor-pointer">Sign Up</button>
           </form>
            <div className="flex items-center my-4">
             <hr className="flex-1 border-gray-300" />
@@ -90,10 +90,10 @@ const Signup = () => {
           {/* google signup button */}
           <button
             type="button"
-            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+            className="w-full flex text-gray-800 items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
           >
             <FcGoogle className="mr-2 text-2xl" />
-            Sign in with Google
+            Continue with Google
           </button>
 
           <p className="text-center text-gray-600 mt-4">

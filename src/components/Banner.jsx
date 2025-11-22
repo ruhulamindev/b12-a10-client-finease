@@ -8,7 +8,7 @@ const Banner = () => {
         <p className="text-lg mb-4">
           Manage your income, expenses, and savings effortlessly.
         </p>
-        <button className="btn btn-primary">Get Started</button>
+        <button className="btn bg-purple-500 border-none text-white btn-primary">Get Started</button>
       </section>
     </div>
   );

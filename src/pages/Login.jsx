@@ -22,7 +22,7 @@ const Login = () => {
         <div className="bg-white shadow-xl rounded-2xl w-full mx-auto max-w-md p-8">
           {/* title */}
           <h2 className="text-3xl font-bold text-center mb-6 text-purple-600">
-            Login
+            Sign In
           </h2>
 
           {/* form */}
@@ -53,15 +53,6 @@ const Login = () => {
               >
               </span>
             </div>
-            {/* forget password */}
-            <div className="text-right">
-              <Link
-                to="/forgotpassword"
-                className="text-sm text-purple-600 hover:underline"
-              >
-                Forget Password?
-              </Link>
-            </div>
 
             {/* login button */}
             <button
@@ -80,10 +71,10 @@ const Login = () => {
           {/* google login button */}
           <button
             type="button"
-            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+            className="w-full text-gray-800 flex items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
           >
             <FcGoogle className="mr-2 text-2xl" />
-            Sign in with Google
+            Continue with Google
           </button>
 
           {/* footer */}

@@ -40,7 +40,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `btn ${
                         isActive
-                          ? "bg-green-500 text-white border-none"
+                          ? "bg-purple-500 text-white border-none"
                           : "btn-outline"
                       }`
                     }
@@ -54,7 +54,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `btn ${
                         isActive
-                          ? "bg-green-500 text-white border-none"
+                          ? "bg-purple-500 text-white border-none"
                           : "btn-outline"
                       }`
                     }
@@ -68,7 +68,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `btn ${
                         isActive
-                          ? "bg-green-500 text-white border-none"
+                          ? "bg-purple-500 text-white border-none"
                           : "btn-outline"
                       }`
                     }
@@ -82,7 +82,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `btn ${
                         isActive
-                          ? "bg-green-500 text-white border-none"
+                          ? "bg-purple-500 text-white border-none"
                           : "btn-outline"
                       }`
                     }
@@ -96,7 +96,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `btn ${
                         isActive
-                          ? "bg-green-500 text-white border-none"
+                          ? "bg-purple-500 text-white border-none"
                           : "btn-outline"
                       }`
                     }
@@ -110,7 +110,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       `btn ${
                         isActive
-                          ? "bg-green-500 text-white border-none"
+                          ? "bg-purple-500 text-white border-none"
                           : "btn-outline"
                       }`
                     }
@@ -174,7 +174,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `btn ${
                   isActive
-                    ? "bg-green-500 text-white border-none"
+                    ? "bg-purple-500 text-white border-none"
                     : "btn-outline"
                 }`
               }
@@ -187,7 +187,7 @@ const Navbar = () => {
               className={({ isActive }) =>
                 `btn ${
                   isActive
-                    ? "bg-green-500 text-white border-none"
+                    ? "bg-purple-500 text-white border-none"
                     : "btn-outline"
                 }`
               }
