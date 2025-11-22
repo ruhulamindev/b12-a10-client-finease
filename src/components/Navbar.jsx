@@ -181,7 +181,7 @@ const Navbar = () => {
             {user ? (
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
+                  <div className="w-10 rounded-full border-green-500 rounded-full border-2">
                     <img
                       src={user.photoURL || "default-profile.png"}
                       alt="profile"
@@ -192,8 +192,11 @@ const Navbar = () => {
                   tabIndex={0}
                   className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-max mt-4 gap-1"
                 >
-                  <li>
-                    <span className="font-semibold border-b">{user.email}</span>
+                  <li className="bg-gray-200">
+                    <h1 className="font-semibold text-xl">
+                      {user.displayName || "No Name"}
+                    </h1>
+                    <span className="font-semibold">{user.email}</span>
                   </li>
                   <li>
                     <NavLink
@@ -217,7 +220,7 @@ const Navbar = () => {
                       onClick={handleLogout}
                       className="btn border-gray-500 bg-white"
                     >
-                      Sign Out
+                      <i class="fa-solid fa-right-from-bracket"></i> Sign Out
                     </button>
                   </li>
                 </ul>
