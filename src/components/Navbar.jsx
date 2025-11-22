@@ -2,8 +2,14 @@ import React from "react";
 import MyContainer from "./MyContainer";
 import { useNavigate, NavLink } from "react-router";
 import { useAuth } from "../contexts/useAuth";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Navbar = () => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -13,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="mb-[-55px] bg-base-100 shadow-sm">
       <MyContainer>
         <div className="navbar">
           <div className="navbar-start">
@@ -134,96 +140,115 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="navbar-center gap-50 hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 gap-1">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    isActive ? "text-purple-500" : ""
-                  }
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/add-transactions"
-                  className={({ isActive }) =>
-                    isActive ? "text-purple-500" : ""
-                  }
-                >
-                  Add Transaction
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/my-transactions"
-                  className={({ isActive }) =>
-                    isActive ? "text-purple-500" : ""
-                  }
-                >
-                  My Transactions
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/reports"
-                  className={({ isActive }) =>
-                    isActive ? "text-purple-500" : ""
-                  }
-                >
-                  Reports
-                </NavLink>
-              </li>
-            </ul>
+            <motion.div
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false }}
+              transition={{ duration: 0.5 }}
+            >
+              <ul className="menu menu-horizontal px-1 gap-1">
+                <li>
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      isActive ? "text-purple-500" : ""
+                    }
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/add-transactions"
+                    className={({ isActive }) =>
+                      isActive ? "text-purple-500" : ""
+                    }
+                  >
+                    Add Transaction
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/my-transactions"
+                    className={({ isActive }) =>
+                      isActive ? "text-purple-500" : ""
+                    }
+                  >
+                    My Transactions
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/reports"
+                    className={({ isActive }) =>
+                      isActive ? "text-purple-500" : ""
+                    }
+                  >
+                    Reports
+                  </NavLink>
+                </li>
+              </ul>
+            </motion.div>
           </div>
           <div className="navbar-end mr-3 space-x-2">
             {user ? (
               <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full border-green-500 rounded-full border-2">
-                    <img
-                      src={user.photoURL || "default-profile.png"}
-                      alt="profile"
-                    />
-                  </div>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-max mt-4 gap-1"
+                <motion.div
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <li className="bg-gray-200">
-                    <h1 className="font-semibold text-xl">
-                      {user.displayName || "No Name"}
-                    </h1>
-                    <span className="font-semibold">{user.email}</span>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/profile"
-                      className={({ isActive }) =>
-                        `btn ${
-                          isActive
-                            ? "bg-purple-500 text-white border-none"
-                            : "btn-outline"
-                        }`
-                      }
-                    >
-                      Profile
-                    </NavLink>
-                  </li>
-                  <li>
-                    <a className="btn border-gray-500 bg-white">Settings</a>
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleLogout}
-                      className="btn border-gray-500 bg-white"
-                    >
-                      <i class="fa-solid fa-right-from-bracket"></i> Sign Out
-                    </button>
-                  </li>
-                </ul>
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full border-green-500 rounded-full border-2">
+                      <img
+                        src={user.photoURL || "default-profile.png"}
+                        alt="profile"
+                      />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-max mt-4 gap-1"
+                  >
+                    <li className="bg-gray-200">
+                      <h1 className="font-semibold text-xl">
+                        {user.displayName || "No Name"}
+                      </h1>
+                      <span className="font-semibold">{user.email}</span>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/profile"
+                        className={({ isActive }) =>
+                          `btn ${
+                            isActive
+                              ? "bg-purple-500 text-white border-none"
+                              : "btn-outline"
+                          }`
+                        }
+                      >
+                        Profile
+                      </NavLink>
+                    </li>
+                    <li>
+                      <a className="btn border-gray-500 bg-white">Settings</a>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="btn border-gray-500 bg-white"
+                      >
+                        <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                      </button>
+                    </li>
+                  </ul>
+                </motion.div>
               </div>
             ) : (
               <>

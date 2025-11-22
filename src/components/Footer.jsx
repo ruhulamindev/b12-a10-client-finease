@@ -1,13 +1,26 @@
 import React from "react";
 import MyContainer from "./MyContainer";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Footer = () => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="bg-base-200">
       <MyContainer>
         <footer className="footer sm:footer-horizontal text-base-content p-10">
           {/* Logo and Website Name */}
-          <div>
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="flex items-start space-y-2 gap-3">
               <img
                 src="/download.png"
@@ -21,17 +34,29 @@ const Footer = () => {
               <br />
               track transactions, and analyze reports effortlessly.
             </p>
-          </div>
+          </motion.div>
           {/* footer link */}
-          <nav className="text-gray-800">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h6 className="footer-title font-bold">Contact details</h6>
             <a className="link link-hover">Support</a>
             <a className="link link-hover">Contact us</a>
             <a className="link link-hover">About us</a>
             <a className="link link-hover">Terms</a>
-          </nav>
+          </motion.div>
           {/* Social Media Links */}
-          <nav>
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <h6 className="footer-title mb-2 font-bold">Social Media Links</h6>
             <div className="flex gap-4">
               <a
@@ -71,7 +96,7 @@ const Footer = () => {
                 />
               </a>
             </div>
-          </nav>
+          </motion.div>
         </footer>
         {/* Copyright */}
         <footer className="footer text-base-content border-base-600 border-t px-10 py-4">
