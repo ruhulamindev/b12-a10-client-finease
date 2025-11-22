@@ -9,6 +9,7 @@ import Reports from "../pages/Reports";
 import Profile from "../pages/Profile";
 import TransactionDetails from "../pages/TransactionDetails";
 import PrivateRoute from "../components/PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -68,5 +69,9 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
