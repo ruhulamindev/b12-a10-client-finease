@@ -1,8 +1,17 @@
 import React from "react";
 import MyContainer from "./MyContainer";
-import { NavLink } from "react-router";
+import { useNavigate, NavLink } from "react-router";
+import { useAuth } from "../contexts/useAuth";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/", { replace: true });
+  };
+
   return (
     <div className="bg-base-100 shadow-sm">
       <MyContainer>
@@ -169,31 +178,79 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end mr-3 space-x-2">
-            <NavLink
-              to="/Login"
-              className={({ isActive }) =>
-                `btn ${
-                  isActive
-                    ? "bg-purple-500 text-white border-none"
-                    : "btn-outline"
-                }`
-              }
-            >
-              Sign In
-            </NavLink>
+            {user ? (
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img
+                      src={user.photoURL || "default-profile.png"}
+                      alt="profile"
+                    />
+                  </div>
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-max mt-4 gap-1"
+                >
+                  <li>
+                    <span className="font-semibold border-b">{user.email}</span>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/profile"
+                      className={({ isActive }) =>
+                        `btn ${
+                          isActive
+                            ? "bg-purple-500 text-white border-none"
+                            : "btn-outline"
+                        }`
+                      }
+                    >
+                      Profile
+                    </NavLink>
+                  </li>
+                  <li>
+                    <a className="btn border-gray-500 bg-white">Settings</a>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="btn border-gray-500 bg-white"
+                    >
+                      Sign Out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <>
+                <NavLink
+                  to="/Login"
+                  className={({ isActive }) =>
+                    `btn ${
+                      isActive
+                        ? "bg-purple-500 text-white border-none"
+                        : "btn-outline"
+                    }`
+                  }
+                >
+                  Sign In
+                </NavLink>
 
-            <NavLink
-              to="/Signup"
-              className={({ isActive }) =>
-                `btn ${
-                  isActive
-                    ? "bg-purple-500 text-white border-none"
-                    : "btn-outline"
-                }`
-              }
-            >
-              Sign Up
-            </NavLink>
+                <NavLink
+                  to="/Signup"
+                  className={({ isActive }) =>
+                    `btn ${
+                      isActive
+                        ? "bg-purple-500 text-white border-none"
+                        : "btn-outline"
+                    }`
+                  }
+                >
+                  Sign Up
+                </NavLink>
+              </>
+            )}
           </div>
         </div>
       </MyContainer>
