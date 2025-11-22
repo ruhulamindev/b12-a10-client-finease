@@ -1,11 +1,51 @@
-import React from 'react';
-import { FcGoogle } from 'react-icons/fc';
-import MyContainer from '../components/MyContainer';
-import { Link } from "react-router";
+import React, { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import MyContainer from "../components/MyContainer";
+import { Link, useLocation, useNavigate } from "react-router";
+import { useAuth } from "../contexts/useAuth";
+import { toast } from "react-toastify";
+import { FaEye } from "react-icons/fa";
+import { IoEyeOff } from "react-icons/io5";
 
 const Login = () => {
-    return (
-       <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-300 p-6">
+  const { signinUser, googleSignin } = useAuth();
+  const [show, setShow] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const redirectTo = location.state?.from || "/";
+
+  const handleSignin = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if (!email) {
+      toast.error("Please enter your email");
+      return;
+    }
+    if (!password) {
+      toast.error("Please enter your password");
+      return;
+    }
+    if (!email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    await signinUser(email, password);
+    navigate(redirectTo, { replace: true });
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      await googleSignin();
+      navigate(redirectTo, { replace: true });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-300 p-6">
       <MyContainer>
         {/* autofill fixed */}
         <style>
@@ -26,7 +66,7 @@ const Login = () => {
           </h2>
 
           {/* form */}
-          <form className="space-y-4">
+          <form onSubmit={handleSignin} className="space-y-4">
             <div>
               <label className="block mb-1 text-gray-600 font-medium">
                 Email
@@ -44,13 +84,16 @@ const Login = () => {
                 Password
               </label>
               <input
+                type={show ? "text" : "password"}
                 name="password"
                 placeholder="Enter password"
                 className="input input-bordered w-full bg-white focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
               <span
+                onClick={() => setShow(!show)}
                 className="absolute right-3 top-1/2 transform translate-y-2 cursor-pointer text-gray-600 z-10 bg-white w-7"
               >
+                {show ? <FaEye /> : <IoEyeOff />}
               </span>
             </div>
 
@@ -70,6 +113,7 @@ const Login = () => {
 
           {/* google login button */}
           <button
+            onClick={handleGoogleSignin}
             type="button"
             className="w-full text-gray-800 flex items-center justify-center border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
           >
@@ -87,7 +131,7 @@ const Login = () => {
         </div>
       </MyContainer>
     </div>
-    );
+  );
 };
 
 export default Login;

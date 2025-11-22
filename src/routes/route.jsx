@@ -7,8 +7,8 @@ import MyTransactions from "../pages/MyTransactions";
 import AddTransaction from "../pages/AddTransaction";
 import Reports from "../pages/Reports";
 import Profile from "../pages/Profile";
-import ForgotPassword from "../pages/ForgotPassword";
 import TransactionDetails from "../pages/TransactionDetails";
+import PrivateRoute from "../components/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -28,24 +28,36 @@ export const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/forgotpassword",
-        element: <ForgotPassword />,
-      },
-      {
         path: "/my-transactions",
-        element: <MyTransactions />,
+        element: (
+          <PrivateRoute>
+            <MyTransactions />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-transactions",
-        element: <AddTransaction />,
+        element: (
+          <PrivateRoute>
+            <AddTransaction />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/reports",
-        element: <Reports />,
+        element: (
+          <PrivateRoute>
+            <Reports />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/transaction-details",
-        element: <TransactionDetails />,
+        element: (
+          <PrivateRoute>
+            <TransactionDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile",
