@@ -35,6 +35,7 @@ export const router = createBrowserRouter([
             <MyTransactions />
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:3000/finance-all")
       },
       {
         path: "/add-transactions",
