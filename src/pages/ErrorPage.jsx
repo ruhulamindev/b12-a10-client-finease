@@ -41,7 +41,7 @@ const ErrorPage = () => {
           onClick={() => navigate("/")}
           className="px-6 py-3 bg-purple-600 hover:bg-purple-700 transition rounded-2xl font-semibold shadow-md"
         >
-          <i class="fa-solid fa-right-to-bracket rotate-180"></i> Back to Home
+          Back to Home
         </button>
       </Fade>
 

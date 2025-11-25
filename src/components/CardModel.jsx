@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 const CardModel = ({ model }) => {
   const { type, category, amount, date, _id } = model;
@@ -22,9 +23,9 @@ const CardModel = ({ model }) => {
         <button className="bg-red-500 text-white px-3 py-1 rounded">
           Delete
         </button>
-        <button className="bg-green-500 text-white px-3 py-1 rounded">
+        <Link to={`/transaction-details/${_id}`} className="bg-green-500 text-white px-3 py-1 rounded">
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );

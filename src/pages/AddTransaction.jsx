@@ -34,12 +34,14 @@ const AddTransaction = () => {
 
   return (
     <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg mt-6 mb-4">
-      <h2 className="text-2xl font-bold text-center mb-4">Add Transaction</h2>
+      <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
+        Add Transaction
+      </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Type */}
         <div>
-          <label className="font-medium">Type</label>
+          <label className="font-medium mb-1 block">Type</label>
           <select
             type="text"
             name="type"
@@ -54,7 +56,7 @@ const AddTransaction = () => {
 
         {/* Category */}
         <div>
-          <label className="font-medium">Category</label>
+          <label className="font-medium mb-1 block">Category</label>
           <select
             name="category"
             defaultValue={""}
@@ -73,7 +75,7 @@ const AddTransaction = () => {
 
         {/* Amount */}
         <div>
-          <label className="font-medium">Amount</label>
+          <label className="font-medium mb-1 block">Amount</label>
           <input
             type="number"
             name="amount"
@@ -85,7 +87,7 @@ const AddTransaction = () => {
 
         {/* Description */}
         <div>
-          <label className="font-medium">Description</label>
+          <label className="font-medium mb-1 block">Description</label>
           <textarea
             name="description"
             className="w-full border rounded p-2"
@@ -97,7 +99,7 @@ const AddTransaction = () => {
 
         {/* Date */}
         <div>
-          <label className="font-medium">Date</label>
+          <label className="font-medium mb-1 block">Date</label>
           <input
             type="date"
             name="date"
@@ -105,28 +107,14 @@ const AddTransaction = () => {
             required
           />
         </div>
-
-        {/* User Email */}
-        {/* <div>
-          <label className="font-medium">User Email (Read Only)</label>
-          <input
-            type="email"
-            value={formData.useremail}
-            readOnly
-            className="w-full border rounded p-2 bg-gray-100 cursor-not-allowed"
-          />
-        </div> */}
-
-        {/* User Name */}
-        {/* <div>
-          <label className="font-medium">User Name (Read Only)</label>
-          <input
-            type="text"
-            value={formData.username}
-            readOnly
-            className="w-full border rounded p-2 bg-gray-100 cursor-not-allowed"
-          />
-        </div> */}
+        <div className="mb-4 bg-gray-100 p-2 rounded">
+          <p>
+            Name: <strong>{user?.displayName || "Default Name"}</strong>
+          </p>
+          <p>
+            Email: <strong>{user?.email || "example@gmail.com"}</strong>
+          </p>
+        </div>
 
         {/* Submit */}
         <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded font-bold">
