@@ -244,7 +244,7 @@ const Navbar = () => {
                         onClick={handleLogout}
                         className="btn border-gray-500 bg-white"
                       >
-                        <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                        Sign Out
                       </button>
                     </li>
                   </ul>

@@ -1,42 +1,134 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../contexts/AuthContext";
 
 const AddTransaction = () => {
+  const { user } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = {
+      type: e.target.type.value,
+      category: e.target.category.value,
+      amount: e.target.amount.value,
+      description: e.target.description.value,
+      date: e.target.date.value,
+      email: user?.email,
+      name: user?.displayName,
+    };
+    fetch("http://localhost:5000/finance-all", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div className="max-w-lg mx-auto bg-white shadow-md p-6 rounded-lg mt-6">
+    <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg mt-6 mb-4">
       <h2 className="text-2xl font-bold text-center mb-4">Add Transaction</h2>
 
-      <form className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Type */}
         <div>
-          <label className="font-medium">Title</label>
-          <input
+          <label className="font-medium">Type</label>
+          <select
             type="text"
+            name="type"
             className="w-full border rounded p-2"
-            placeholder="Enter title"
-          />
+            required
+          >
+            <option value="">Select Type</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+          </select>
         </div>
 
+        {/* Category */}
+        <div>
+          <label className="font-medium">Category</label>
+          <select
+            name="category"
+            defaultValue={""}
+            className="w-full border rounded p-2"
+            required
+          >
+            <option value="disabled">Select Category</option>
+            <option>Food</option>
+            <option>Shopping</option>
+            <option>Salary</option>
+            <option>Gift</option>
+            <option>Medicine</option>
+            <option>Transport</option>
+          </select>
+        </div>
+
+        {/* Amount */}
         <div>
           <label className="font-medium">Amount</label>
           <input
             type="number"
+            name="amount"
             className="w-full border rounded p-2"
             placeholder="Enter amount"
+            required
           />
         </div>
 
+        {/* Description */}
         <div>
-          <label className="font-medium">Type</label>
-          <select className="w-full border rounded p-2">
-            <option>Income</option>
-            <option>Expense</option>
-          </select>
+          <label className="font-medium">Description</label>
+          <textarea
+            name="description"
+            className="w-full border rounded p-2"
+            rows="2"
+            placeholder="Enter description"
+            required
+          ></textarea>
         </div>
 
+        {/* Date */}
         <div>
           <label className="font-medium">Date</label>
-          <input type="date" className="w-full border rounded p-2" />
+          <input
+            type="date"
+            name="date"
+            className="w-full border rounded p-2"
+            required
+          />
         </div>
 
+        {/* User Email */}
+        {/* <div>
+          <label className="font-medium">User Email (Read Only)</label>
+          <input
+            type="email"
+            value={formData.useremail}
+            readOnly
+            className="w-full border rounded p-2 bg-gray-100 cursor-not-allowed"
+          />
+        </div> */}
+
+        {/* User Name */}
+        {/* <div>
+          <label className="font-medium">User Name (Read Only)</label>
+          <input
+            type="text"
+            value={formData.username}
+            readOnly
+            className="w-full border rounded p-2 bg-gray-100 cursor-not-allowed"
+          />
+        </div> */}
+
+        {/* Submit */}
         <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded font-bold">
           Add Transaction
         </button>
