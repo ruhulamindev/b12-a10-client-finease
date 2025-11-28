@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 import TransactionDetails from "../pages/TransactionDetails";
 import PrivateRoute from "../components/PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
+import UpdatePage from "../pages/UpdatePage";
 
 export const router = createBrowserRouter([
   {
@@ -64,10 +65,20 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/finance-all/${params.id}`),
       },
       {
+        path: "/update-page/:id",
+        element: (
+          <PrivateRoute>
+            <UpdatePage />
+          </PrivateRoute>
+        ),
+       loader: ({ params }) =>
+          fetch(`http://localhost:5000/finance-all/${params.id}`),
+      },
+      {
         path: "/profile",
         element: (
           <PrivateRoute>
-            <Profile />)
+            <Profile />
           </PrivateRoute>
         ),
       },

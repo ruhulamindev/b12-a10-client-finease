@@ -1,14 +1,13 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../contexts/AuthContext";
+import React from "react";
+import { useLoaderData } from "react-router";
 import { toast } from "react-toastify";
 
-const AddTransaction = () => {
-  const { user } = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(false);
+const UpdatePage = () => {
+  const data = useLoaderData();
+  const model = data.result;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     const formData = {
       type: e.target.type.value,
@@ -16,11 +15,9 @@ const AddTransaction = () => {
       amount: e.target.amount.value,
       description: e.target.description.value,
       date: e.target.date.value,
-      email: user?.email,
-      name: user?.displayName,
     };
-    fetch("http://localhost:5000/finance-all", {
-      method: "POST",
+    fetch(`http://localhost:5000/finance-all/${model._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -29,20 +26,18 @@ const AddTransaction = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Transaction Added Successfully!");
-        e.target.reset();
+        toast.success("Successfully Updated!");
       })
       .catch((err) => {
-        toast.error("Something went wrong!");
         console.log(err);
-      })
-      .finally(() => setIsLoading(false));
+        toast.error("Update failed! Try again.");
+      });
   };
 
   return (
     <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg mt-6 mb-4">
       <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
-        Add Transaction
+        Update Transaction
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -51,6 +46,7 @@ const AddTransaction = () => {
           <label className="font-medium mb-1 block">Type</label>
           <select
             type="text"
+            defaultValue={model.type}
             name="type"
             className="w-full border rounded p-2"
             required
@@ -66,7 +62,7 @@ const AddTransaction = () => {
           <label className="font-medium mb-1 block">Category</label>
           <select
             name="category"
-            defaultValue={""}
+            defaultValue={model.category}
             className="w-full border rounded p-2"
             required
           >
@@ -85,6 +81,7 @@ const AddTransaction = () => {
           <label className="font-medium mb-1 block">Amount</label>
           <input
             type="number"
+            defaultValue={model.amount}
             name="amount"
             className="w-full border rounded p-2"
             placeholder="Enter amount"
@@ -97,6 +94,7 @@ const AddTransaction = () => {
           <label className="font-medium mb-1 block">Description</label>
           <textarea
             name="description"
+            defaultValue={model.description}
             className="w-full border rounded p-2"
             rows="2"
             placeholder="Enter description"
@@ -109,35 +107,20 @@ const AddTransaction = () => {
           <label className="font-medium mb-1 block">Date</label>
           <input
             type="date"
+            defaultValue={model.date}
             name="date"
             className="w-full border rounded p-2"
             required
           />
         </div>
-        <div className="mb-4 bg-gray-100 p-2 rounded">
-          <p>
-            Name: <strong>{user?.displayName || "Default Name"}</strong>
-          </p>
-          <p>
-            Email: <strong>{user?.email || "example@gmail.com"}</strong>
-          </p>
-        </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className={`w-full py-2 rounded font-bold text-white ${
-            isLoading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-green-500 hover:bg-green-600"
-          }`}
-          disabled={isLoading}
-        >
-          {isLoading ? "Adding..." : "Add Transaction"}
+        {/* Submit */}
+        <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded font-bold">
+          Update Transaction
         </button>
       </form>
     </div>
   );
 };
 
-export default AddTransaction;
+export default UpdatePage;
