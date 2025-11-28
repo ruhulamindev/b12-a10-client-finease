@@ -1,13 +1,16 @@
-import React from "react";
-import { useLoaderData } from "react-router";
+import React, { useState } from "react";
+import { useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 const UpdatePage = () => {
   const data = useLoaderData();
   const model = data.result;
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const formData = {
       type: e.target.type.value,
@@ -27,11 +30,13 @@ const UpdatePage = () => {
       .then((data) => {
         console.log(data);
         toast.success("Successfully Updated!");
+        navigate("/my-transactions");
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Update failed! Try again.");
-      });
+        console.log(err);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -115,8 +120,16 @@ const UpdatePage = () => {
         </div>
 
         {/* Submit */}
-        <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded font-bold">
-          Update Transaction
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`w-full py-2 rounded font-bold text-white ${
+            isLoading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-green-500 hover:bg-green-600"
+          }`}
+        >
+          {isLoading ? "Updating..." : "Update Transaction"}
         </button>
       </form>
     </div>
