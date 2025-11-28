@@ -30,7 +30,7 @@ const UpdatePage = () => {
       .then((data) => {
         console.log(data);
         toast.success("Successfully Updated!");
-        navigate("/my-transactions");
+        navigate(`/transaction-details/${model._id}`);
       })
       .catch((err) => {
         toast.error("Update failed! Try again.");
