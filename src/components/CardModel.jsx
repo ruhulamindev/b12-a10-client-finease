@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-const CardModel = ({ model }) => {
+const CardModel = ({ model, onDelete }) => {
   const { type, category, amount, date, _id } = model;
 
   const handleDelete = () => {
@@ -17,6 +17,7 @@ const CardModel = ({ model }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        onDelete(_id);
         fetch(`http://localhost:5000/finance-all/${model._id}`, {
           method: "DELETE",
           headers: {
