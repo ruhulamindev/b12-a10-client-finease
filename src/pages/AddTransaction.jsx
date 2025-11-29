@@ -15,7 +15,7 @@ const AddTransaction = () => {
       category: e.target.category.value,
       amount: e.target.amount.value,
       description: e.target.description.value,
-      date: e.target.date.value,
+      date: new Date(e.target.date.value),
       email: user?.email,
       name: user?.displayName,
     };
@@ -127,9 +127,7 @@ const AddTransaction = () => {
         <button
           type="submit"
           className={`w-full py-2 rounded font-bold text-white ${
-            isLoading
-              ? "bg-purple-500 cursor-not-allowed"
-              : "bg-purple-500"
+            isLoading ? "bg-purple-500 cursor-not-allowed" : "bg-purple-500"
           }`}
           disabled={isLoading}
         >
