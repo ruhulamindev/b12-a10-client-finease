@@ -128,8 +128,8 @@ const AddTransaction = () => {
           type="submit"
           className={`w-full py-2 rounded font-bold text-white ${
             isLoading
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-green-500 hover:bg-green-600"
+              ? "bg-purple-500 cursor-not-allowed"
+              : "bg-purple-500"
           }`}
           disabled={isLoading}
         >

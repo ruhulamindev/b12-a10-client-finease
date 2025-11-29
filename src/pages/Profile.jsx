@@ -44,7 +44,7 @@ const Profile = () => {
         {!editing && (
           <button
             onClick={() => setEditing(true)}
-            className="btn btn-primary w-full bg-green-500 border-none"
+            className="btn btn-primary w-full bg-purple-500 border-none"
           >
             Update Profile
           </button>
