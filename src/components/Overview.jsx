@@ -3,34 +3,31 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const Overview = () => {
-  const [_transactions, setTransaction] = useState([]);
-  const [totalExpense, setTotalExpense] = useState([0]);
-  const [totalIncome, setTotalIncome] = useState([0]);
+  const [overview, setOverview] = useState({
+    totalBalance: 0,
+    totalIncome: 0,
+    totalExpense: 0,
+  });
 
   useEffect(() => {
-    const fetchTransactions = async () => {
+    const fetchOverview = async () => {
       try {
-        const res = await fetch("http://localhost:5000/finance-all");
+        const res = await fetch("http://localhost:5000/overview");
         const data = await res.json();
-        setTransaction(data);
-
-        let income = 0;
-        let expense = 0;
-
-        data.forEach((t) => {
-          if (t.type === "Income") income += t.amount;
-          if (t.type === "Expense") expense += t.amount;
-        });
-        setTotalIncome(income);
-        setTotalExpense(expense);
+        if (data.success) {
+          setOverview({
+            totalBalance: data.totalBalance,
+            totalIncome: data.totalIncome,
+            totalExpense: data.totalExpense,
+          });
+        }
       } catch (err) {
-        console.error("Error fetching transactions:", err);
+        console.error("Failed to fetch overview:", err);
       }
     };
-    fetchTransactions();
-  }, []);
 
-  const totalBalance = totalIncome - totalExpense;
+    fetchOverview();
+  }, []);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -49,7 +46,7 @@ const Overview = () => {
           transition={{ duration: 0.5 }}
         >
           <h3 className="text-gray-500">Total Balance</h3>
-          <p className="text-2xl font-bold">${totalBalance}</p>
+          <p className="text-2xl font-bold">${overview.totalBalance}</p>
         </motion.div>
 
         <motion.div
@@ -61,7 +58,7 @@ const Overview = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h3 className="text-gray-500">Income</h3>
-          <p className="text-2xl font-bold">${totalIncome}</p>
+          <p className="text-2xl font-bold">${overview.totalIncome}</p>
         </motion.div>
 
         <motion.div
@@ -73,7 +70,7 @@ const Overview = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <h3 className="text-gray-500">Expenses</h3>
-          <p className="text-2xl font-bold">${totalExpense}</p>
+          <p className="text-2xl font-bold">${overview.totalExpense}</p>
         </motion.div>
       </section>
     </div>
