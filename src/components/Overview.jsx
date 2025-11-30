@@ -38,39 +38,45 @@ const Overview = () => {
     <div>
       <section className="grid grid-cols-1 md:grid-cols-3 mb-4 gap-4 my-2">
         <motion.div
-          className="p-4 bg-white rounded-lg shadow-md text-center"
+          className="p-4 bg-blue-500 rounded-lg shadow-md text-center"
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           transition={{ duration: 0.5 }}
         >
-          <h3 className="text-gray-500">Total Balance</h3>
-          <p className="text-2xl font-bold">${overview.totalBalance}</p>
+          <h3 className="text-lg font-bold text-white">Total Amount</h3>
+          <p className="text-2xl font-bold text-white">
+            ${overview.totalBalance}
+          </p>
         </motion.div>
 
         <motion.div
-          className="p-4 bg-green-100 rounded-lg shadow-md text-center"
+          className="p-4 bg-green-500 rounded-lg shadow-md text-center"
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-gray-500">Income</h3>
-          <p className="text-2xl font-bold">${overview.totalIncome}</p>
+          <h3 className="text-lg font-bold text-white">Income</h3>
+          <p className="text-2xl font-bold text-white">
+            ${overview.totalIncome}
+          </p>
         </motion.div>
 
         <motion.div
-          className="p-4 bg-red-100 rounded-lg shadow-md text-center"
+          className="p-4 bg-red-500 rounded-lg shadow-md text-center"
           variants={cardVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <h3 className="text-gray-500">Expenses</h3>
-          <p className="text-2xl font-bold">${overview.totalExpense}</p>
+          <h3 className="text-lg font-bold text-white">Expenses</h3>
+          <p className="text-2xl font-bold text-white">
+            ${overview.totalExpense}
+          </p>
         </motion.div>
       </section>
     </div>
