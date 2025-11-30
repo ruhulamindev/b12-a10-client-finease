@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MyContainer from "./MyContainer";
 import { useNavigate, NavLink } from "react-router";
 import { useAuth } from "../contexts/useAuth";
@@ -12,6 +12,21 @@ const Navbar = () => {
   };
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  // Dark/Light Mode Incomplete Just Show
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
 
   const handleLogout = async () => {
     await logout();
@@ -196,7 +211,45 @@ const Navbar = () => {
               </ul>
             </motion.div>
           </div>
-          <div className="navbar-end mr-3 space-x-2">
+          <div className="navbar-end mr-3 space-x-2 flex items-center">
+            {/* Dark/Light Mode Incomplete Just Show */}
+            {user && (
+              <div
+                onClick={() => setDarkMode(!darkMode)}
+                className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${
+                  darkMode
+                    ? "bg-gray-700 border-2 border-green-500"
+                    : "bg-sky-100 border-2 border-green-500"
+                }`}
+              >
+                <div
+                  className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${
+                    darkMode ? "translate-x-7" : "translate-x-0"
+                  } flex items-center justify-center`}
+                >
+                  {darkMode ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-800"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-yellow-500"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M12 4.5V2m0 20v-2.5m7.07-7.07H22M2 12h2.5m15.36 4.95l1.77 1.77M4.95 4.95l1.77 1.77m12.02 12.02l1.77 1.77M4.95 19.05l1.77-1.77M12 6a6 6 0 100 12 6 6 0 000-12z" />
+                    </svg>
+                  )}
+                </div>
+              </div>
+            )}
+
             {user ? (
               <div className="dropdown dropdown-end">
                 <motion.div

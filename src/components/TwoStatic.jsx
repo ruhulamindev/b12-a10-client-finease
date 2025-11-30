@@ -23,8 +23,8 @@ const TwoStatic = () => {
       </section>
       {/* FAQ Section */}
       <section className="my-10 space-y-2">
-        <h1 className="text-2xl text-center my-6 font-bold">
-          <span className="text-sky-500">Important</span> Key Rules (FAQ)
+        <h1 className="text-2xl text-gray-400 text-center my-6 font-bold">
+          <span>Important</span> Key Rules (FAQ)
         </h1>
 
         <section

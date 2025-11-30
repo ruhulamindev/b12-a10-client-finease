@@ -114,7 +114,7 @@ const Reports = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-4">Reports</h2>
+      <h2 className="text-2xl font-bold text-center mb-4 bg-gray-100 p-2 rounded">Reports</h2>
 
       {/* Summary Cards */}
       <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -133,7 +133,7 @@ const Reports = () => {
       </div>
 
       {/* Month Filter */}
-      <div className="mb-6 text-center">
+      <div className="mb-6 text-center bg-gray-100 p-2 rounded">
         <label className="mr-2 font-bold">Filter by Month:</label>
         <input
           type="month"

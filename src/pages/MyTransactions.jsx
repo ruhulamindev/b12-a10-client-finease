@@ -41,7 +41,7 @@ const MyTransactions = () => {
       <h2 className="text-2xl font-bold mb-4 text-center text-purple-500">
         My Transactions
       </h2>
-      <div className="flex gap-2 mb-4">
+      <div className="flex justify-center gap-4 mb-4 bg-gray-100 p-2 rounded">
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
@@ -53,6 +53,24 @@ const MyTransactions = () => {
           <option value="date">Date</option>
           <option value="amount">Amount</option>
         </select>
+        <div className="flex gap-2 items-center">
+          <button
+            onClick={() => setOrder("asc")}
+            className={`px-2 py-1 border rounded ${
+              order === "asc" ? "bg-purple-500 text-white" : ""
+            }`}
+          >
+            ⬅️
+          </button>
+          <button
+            onClick={() => setOrder("desc")}
+            className={`px-2 py-1 border rounded ${
+              order === "desc" ? "bg-purple-500 text-white" : ""
+            }`}
+          >
+            ➡️
+          </button>
+        </div>
 
         <select
           value={order}

@@ -51,7 +51,7 @@ const CardModel = ({ model, onDelete }) => {
       >
         {type}: {amount}$
       </p>
-      <p>Date: {new Date(model.date).toLocaleDateString()}</p>
+      <p>Date: {new Date(date).toLocaleDateString()}</p>
       <div className="flex gap-2 mt-4">
         <Link
           to={`/update-page/${model._id}`}
