@@ -63,34 +63,39 @@ const Navbar = () => {
                     Home
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/login"
-                    className={({ isActive }) =>
-                      `btn ${
-                        isActive
-                          ? "bg-purple-500 text-white border-none"
-                          : "btn-outline"
-                      }`
-                    }
-                  >
-                    Signin
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/signup"
-                    className={({ isActive }) =>
-                      `btn ${
-                        isActive
-                          ? "bg-purple-500 text-white border-none"
-                          : "btn-outline"
-                      }`
-                    }
-                  >
-                    Signup
-                  </NavLink>
-                </li>
+                {!user && (
+                  <>
+                    <li>
+                      <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                          `btn ${
+                            isActive
+                              ? "bg-purple-500 text-white border-none"
+                              : "btn-outline"
+                          }`
+                        }
+                      >
+                        Signin
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/signup"
+                        className={({ isActive }) =>
+                          `btn ${
+                            isActive
+                              ? "bg-purple-500 text-white border-none"
+                              : "btn-outline"
+                          }`
+                        }
+                      >
+                        Signup
+                      </NavLink>
+                    </li>
+                  </>
+                )}
+
                 <li>
                   <NavLink
                     to="/add-transactions"
