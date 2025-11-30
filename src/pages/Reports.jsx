@@ -11,11 +11,18 @@ import {
   BarElement,
 } from "chart.js";
 
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement
+);
 
 const Reports = () => {
   const [transactions, setTransactions] = useState([]);
-  const [monthFilter, setMonthFilter] = useState(""); 
+  const [monthFilter, setMonthFilter] = useState("");
   const [summary, setSummary] = useState({
     totalIncome: 0,
     totalExpense: 0,
@@ -23,44 +30,45 @@ const Reports = () => {
   });
 
   useEffect(() => {
-    fetchTransactions();
-  }, [monthFilter]);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/finance-all");
+        let data = res.data;
 
-  const fetchTransactions = async () => {
-    try {
-      const res = await axios.get("http://localhost:5000/finance-all");
-      let data = res.data;
+        // Filter by month if selected
+        if (monthFilter) {
+          data = data.filter((t) => t.date.startsWith(monthFilter));
+        }
 
-      // Filter by month if selected
-      if (monthFilter) {
-        data = data.filter((t) => t.date.startsWith(monthFilter));
+        setTransactions(data);
+
+        // Calculate summary
+        let totalIncome = 0;
+        let totalExpense = 0;
+        data.forEach((t) => {
+          if (t.type === "Income") totalIncome += t.amount;
+          if (t.type === "Expense") totalExpense += t.amount;
+        });
+
+        setSummary({
+          totalIncome,
+          totalExpense,
+          balance: totalIncome + totalExpense,
+        });
+      } catch (err) {
+        console.error(err);
       }
+    };
 
-      setTransactions(data);
-
-      // Calculate summary
-      let totalIncome = 0;
-      let totalExpense = 0;
-      data.forEach((t) => {
-        if (t.type === "Income") totalIncome += t.amount;
-        if (t.type === "Expense") totalExpense += t.amount;
-      });
-
-      setSummary({
-        totalIncome,
-        totalExpense,
-        balance: totalIncome + totalExpense,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    fetchData();
+  }, [monthFilter]);
 
   // Pie Chart Data (Category-wise Expense)
   const expenseCategories = {};
   transactions.forEach((t) => {
     if (t.type === "Expense") {
-      expenseCategories[t.category] = (expenseCategories[t.category] || 0) + t.amount;
+      expenseCategories[t.category] =
+        (expenseCategories[t.category] || 0) + t.amount;
     }
   });
   const pieData = {
@@ -138,7 +146,9 @@ const Reports = () => {
       {/* Charts */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="bg-white shadow-md p-6 rounded-lg">
-          <h3 className="font-bold text-lg mb-2 text-center">Category-wise Expense</h3>
+          <h3 className="font-bold text-lg mb-2 text-center">
+            Category-wise Expense
+          </h3>
           <Pie data={pieData} />
         </div>
 
