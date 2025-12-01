@@ -2,12 +2,14 @@ import React from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { getIdToken } from "firebase/auth";
+import { auth } from "../fairbase/fairbase.config";
 
 const CardModel = ({ model, onDelete }) => {
   const { type, category, amount, date, _id } = model;
-
-  const handleDelete = () => {
-    Swal.fire({
+  
+  const handleDelete = async () => {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -15,31 +17,32 @@ const CardModel = ({ model, onDelete }) => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    });
       if (result.isConfirmed) {
-        onDelete(_id);
-        fetch(`http://localhost:5000/finance-all/${model._id}`, {
+        try{
+          const token = await getIdToken(auth.currentUser);
+          const res = await fetch(`http://localhost:5000/finance-all/${model._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
           },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          })
-          .catch((err) => {
+        });
+        const data = await res.json();
+        if (data.success) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          onDelete(_id);
+            } else {
+              Swal.fire("Error!", data.message, "error");
+            }
+          }catch(err) {
             console.log(err);
-            toast.error("Update failed! Try again.");
-          });
+            toast.error("Delete failed! Try again.");
+          }
       }
-    });
   };
+
+  
   return (
     <div className="bg-gradient-to-l from-blue-50 via-blue-300 to-blue-200 shadow-md p-4 rounded-lg">
       <h3 className="font-bold text-lg">{type}</h3>

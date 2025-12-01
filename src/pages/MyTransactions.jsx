@@ -12,7 +12,7 @@ const MyTransactions = () => {
 
   // Initial Load---Fetch only user's data
   useEffect(() => {
-    fetch(`http://localhost:5000/finance-all`, {
+    fetch(`http://localhost:5000/finance-all?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -25,16 +25,7 @@ const MyTransactions = () => {
   }, [user.email]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/finance-all/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          // remove deleted item from state
-          setTransactions((prev) => prev.filter((t) => t._id !== id));
-        }
-      });
+    setTransactions((prev) => prev.filter((t) => t._id !== id));
   };
 
   // Fetch with sorting
