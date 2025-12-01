@@ -2,7 +2,6 @@ import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import AuthContext from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
-import MyContainer from "./../components/MyContainer";
 
 const TransactionDetails = () => {
   const navigate = useNavigate();

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { getIdToken } from "firebase/auth";
 import { auth } from "./../fairbase/fairbase.config";
-import LoadingSpinner from "../components/LoadingSpinner";
 
 const UpdatePage = () => {
   const { id } = useParams();
@@ -32,8 +31,18 @@ const UpdatePage = () => {
 
   if (!model)
     return (
-      <div>
-        <LoadingSpinner />
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-red-700">
+        <div className="max-w-md w-full bg-white p-6 rounded shadow text-center">
+          <p className="text-lg font-semibold mb-4">
+            ❌ Transaction not found or you don't have access to view it.
+          </p>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
+            onClick={() => navigate("/my-transactions")}
+          >
+            Go Back
+          </button>
+        </div>
       </div>
     );
 
