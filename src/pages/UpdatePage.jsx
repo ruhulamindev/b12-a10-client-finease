@@ -1,14 +1,43 @@
-import React, { useState } from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
+import { getIdToken } from "firebase/auth";
+import { auth } from "./../fairbase/fairbase.config";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const UpdatePage = () => {
-  const data = useLoaderData();
-  const model = data?.result;
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [model, setModel] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const fetchTransaction = async () => {
+      try {
+        if (!auth.currentUser) return; // check login
+        const token = await getIdToken(auth.currentUser);
+        const res = await fetch(`http://localhost:5000/finance-all/${id}`, {
+          headers: { authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (data.success) setModel(data.result);
+        else toast.error(data.message || "Failed to load transaction");
+      } catch (err) {
+        toast.error("Failed to load transaction");
+        console.log(err);
+      }
+    };
+    fetchTransaction();
+  }, [id]);
+
+  if (!model)
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -19,24 +48,32 @@ const UpdatePage = () => {
       description: e.target.description.value,
       date: e.target.date.value,
     };
-    fetch(`http://localhost:5000/finance-all/${model._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+    try {
+      const token = await getIdToken(auth.currentUser);
+      const res = await fetch(
+        `http://localhost:5000/finance-all/${model._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      const data = await res.json();
+      if (data.success) {
         toast.success("Successfully Updated!");
         navigate(`/transaction-details/${model._id}`);
-      })
-      .catch((err) => {
-        toast.error("Update failed! Try again.");
-        console.log(err);
-      })
-      .finally(() => setIsLoading(false));
+      } else {
+        toast.error(data.message || "Update failed!");
+      }
+    } catch (err) {
+      toast.error("Update failed! Try again.");
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

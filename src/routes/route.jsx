@@ -68,8 +68,6 @@ export const router = createBrowserRouter([
             <UpdatePage />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/finance-all/${params.id}`),
       },
       {
         path: "/profile",
