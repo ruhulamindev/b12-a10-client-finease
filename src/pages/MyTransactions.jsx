@@ -12,17 +12,17 @@ const MyTransactions = () => {
 
   // Initial Load---Fetch only user's data
   useEffect(() => {
-    fetch(`http://localhost:5000/finance-all?email=${user.email}`, {
+    fetch(`http://localhost:5000/finance-all`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        setTransactions(data);
+        setTransactions(Array.isArray(data) ? data : data.result || []);
         setLoading(false);
       });
-  }, []);
+  }, [user.email]);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/finance-all/${id}`, {
@@ -50,7 +50,7 @@ const MyTransactions = () => {
       );
 
       const data = await res.json();
-      setTransactions(data);
+      setTransactions(Array.isArray(data) ? data : data.result || []);
     };
 
     fetchTransactions();

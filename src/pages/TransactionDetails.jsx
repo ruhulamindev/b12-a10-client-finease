@@ -2,34 +2,66 @@ import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import AuthContext from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MyContainer from "./../components/MyContainer";
 
 const TransactionDetails = () => {
   const navigate = useNavigate();
-  const {id} = useParams()
-  const [model,setModel] = useState({})
+  const { id } = useParams();
+  const [model, setModel] = useState(null);
   const [totalAmount, setTotalAmount] = useState(0);
-  const [loading,setLoading] = useState(true)
-  const {user} = use(AuthContext)
+  const [loading, setLoading] = useState(true);
+  const { user } = use(AuthContext);
 
   useEffect(() => {
-          fetch(`http://localhost:5000/finance-all/${id}`, {
-            headers: {
-              authorization: `Bearer ${user.accessToken}`
-            }
-          })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            setModel(data.result)
-            setTotalAmount(data.totalAmount);
-            setLoading(false)
-          })
-  },[])
+    fetch(`http://localhost:5000/finance-all/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data)
+        if (!data) {
+          setModel(null);
+        } else {
+          setModel(data.result);
+          setTotalAmount(data.totalAmount);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setModel(null);
+        setLoading(false);
+      });
+  }, [id, user.accessToken]);
 
-
-  if(loading){
-    return <div><LoadingSpinner/></div>
+  if (loading) {
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
   }
+
+  if (!model) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-red-700">
+        <div className="max-w-md w-full bg-white p-6 rounded shadow text-center">
+          <p className="text-lg font-semibold mb-4">
+            ❌ Transaction not found or you don't have access to view it.
+          </p>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
+            onClick={() => navigate("/my-transactions")}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-md mx-auto bg-gradient-to-l from-sky-200 via-green-200 to-red-200 rounded-xl shadow-lg overflow-hidden mt-8 mb-8 border border-gray-200">
       <div className="relative  px-6 py-6">
