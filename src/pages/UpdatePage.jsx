@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 const UpdatePage = () => {
   const data = useLoaderData();
-  const model = data.result;
+  const model = data?.result;
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 

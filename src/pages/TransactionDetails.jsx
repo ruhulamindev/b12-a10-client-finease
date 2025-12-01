@@ -1,13 +1,35 @@
-import React from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import AuthContext from "../contexts/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const TransactionDetails = () => {
-  const data = useLoaderData();
-  const model = data.result;
   const navigate = useNavigate();
+  const {id} = useParams()
+  const [model,setModel] = useState({})
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [loading,setLoading] = useState(true)
+  const {user} = use(AuthContext)
 
-  const totalAmount = data.totalAmount;
+  useEffect(() => {
+          fetch(`http://localhost:5000/finance-all/${id}`, {
+            headers: {
+              authorization: `Bearer ${user.accessToken}`
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            setModel(data.result)
+            setTotalAmount(data.totalAmount);
+            setLoading(false)
+          })
+  },[])
 
+
+  if(loading){
+    return <div><LoadingSpinner/></div>
+  }
   return (
     <div className="max-w-md mx-auto bg-gradient-to-l from-sky-200 via-green-200 to-red-200 rounded-xl shadow-lg overflow-hidden mt-8 mb-8 border border-gray-200">
       <div className="relative  px-6 py-6">

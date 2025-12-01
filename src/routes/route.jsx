@@ -36,7 +36,6 @@ export const router = createBrowserRouter([
             <MyTransactions />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/finance-all"),
       },
       {
         path: "/add-transactions",
@@ -61,8 +60,6 @@ export const router = createBrowserRouter([
             <TransactionDetails />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/finance-all/${params.id}`),
       },
       {
         path: "/update-page/:id",
@@ -71,7 +68,7 @@ export const router = createBrowserRouter([
             <UpdatePage />
           </PrivateRoute>
         ),
-       loader: ({ params }) =>
+        loader: ({ params }) =>
           fetch(`http://localhost:5000/finance-all/${params.id}`),
       },
       {

@@ -1,13 +1,28 @@
-import { useLoaderData } from "react-router";
+import { use, useEffect, useState } from "react";
 import CardModel from "../components/CardModel";
-import { useEffect, useState } from "react";
+import LoadingSpinner from "../components/LoadingSpinner";
+import AuthContext from "../contexts/AuthContext";
 
 const MyTransactions = () => {
-  const data = useLoaderData();
-  // console.log(data)
-  const [transactions, setTransactions] = useState(data);
+  const { user } = use(AuthContext);
+  const [loading, setLoading] = useState(true);
+  const [transactions, setTransactions] = useState([]);
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("");
+
+  // Initial Load---Fetch only user's data
+  useEffect(() => {
+    fetch(`http://localhost:5000/finance-all?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTransactions(data);
+        setLoading(false);
+      });
+  }, []);
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/finance-all/${id}`, {
@@ -25,16 +40,29 @@ const MyTransactions = () => {
   // Fetch with sorting
   useEffect(() => {
     const fetchTransactions = async () => {
-      if (!sortBy || (sortBy === "date" && !order)) return;
+      if (!sortBy || !order) return;
+
       const res = await fetch(
-        `http://localhost:5000/finance-all?sortBy=${sortBy}&order=${order}`
+        `http://localhost:5000/finance-all?email=${user.email}&sortBy=${sortBy}&order=${order}`,
+        {
+          headers: { authorization: `Bearer ${user.accessToken}` },
+        }
       );
+
       const data = await res.json();
       setTransactions(data);
     };
 
     fetchTransactions();
-  }, [sortBy, order]);
+  }, [sortBy, order, user.email]);
+
+  if (loading) {
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className="p-4">
