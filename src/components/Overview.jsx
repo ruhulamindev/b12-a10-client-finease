@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
-import LoadingSpinner from "./LoadingSpinner";
+// import LoadingSpinner from "./LoadingSpinner";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
@@ -11,11 +11,11 @@ const Overview = () => {
     totalIncome: 0,
     totalExpense: 0,
   });
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchOverview = async () => {
-      setLoading(true);
+      // setLoading(true);
       try {
         const res = await fetch(
           "https://b12-a10-server-finease.vercel.app/overview",
@@ -35,17 +35,18 @@ const Overview = () => {
         }
       } catch (err) {
         console.error("Failed to fetch overview:", err);
-      } finally {
-        setLoading(false);
-      }
+      } 
+      // finally {
+        // setLoading(false);
+      // }
     };
 
     if (user?.accessToken) fetchOverview();
   }, [user?.accessToken]);
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
+  // if (loading) {
+  //   return <LoadingSpinner />;
+  // }
 
   return (
     <div>
