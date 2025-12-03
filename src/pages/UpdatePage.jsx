@@ -3,19 +3,23 @@ import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { getIdToken } from "firebase/auth";
 import { auth } from "./../fairbase/fairbase.config";
+import AuthContext from "../contexts/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const UpdatePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [model, setModel] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     const fetchTransaction = async () => {
+      setFetching(true);
       try {
         if (!auth.currentUser) return; // check login
         const token = await getIdToken(auth.currentUser);
-        const res = await fetch(`http://localhost:5000/finance-all/${id}`, {
+        const res = await fetch(`https://b12-a10-server-finease.vercel.app/finance-all/${id}`, {
           headers: { authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -25,26 +29,12 @@ const UpdatePage = () => {
         toast.error("Failed to load transaction");
         console.log(err);
       }
+      finally {
+        setFetching(false); 
+      }
     };
     fetchTransaction();
   }, [id]);
-
-  if (!model)
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-red-700">
-        <div className="max-w-md w-full bg-white p-6 rounded shadow text-center">
-          <p className="text-lg font-semibold mb-4">
-            ❌ Transaction not found or you don't have access to view it.
-          </p>
-          <button
-            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
-            onClick={() => navigate("/my-transactions")}
-          >
-            Go Back
-          </button>
-        </div>
-      </div>
-    );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +50,7 @@ const UpdatePage = () => {
     try {
       const token = await getIdToken(auth.currentUser);
       const res = await fetch(
-        `http://localhost:5000/finance-all/${model._id}`,
+        `https://b12-a10-server-finease.vercel.app/finance-all/${model._id}`,
         {
           method: "PUT",
           headers: {
@@ -84,6 +74,24 @@ const UpdatePage = () => {
       setIsLoading(false);
     }
   };
+
+  if (fetching) return <LoadingSpinner />;
+    if (!fetching && !model)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 text-red-700">
+        <div className="max-w-md w-full bg-white p-6 rounded shadow text-center">
+          <p className="text-lg font-semibold mb-4">
+            ❌ Transaction not found or you don't have access to view it.
+          </p>
+          <button
+            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
+            onClick={() => navigate("/my-transactions")}
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
 
   return (
     <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg mt-6 mb-4">

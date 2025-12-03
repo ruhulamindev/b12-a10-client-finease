@@ -19,7 +19,7 @@ const AddTransaction = () => {
       email: user?.email,
       name: user?.displayName,
     };
-    fetch("http://localhost:5000/finance-all", {
+    fetch("https://b12-a10-server-finease.vercel.app/finance-all", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

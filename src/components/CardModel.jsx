@@ -21,7 +21,7 @@ const CardModel = ({ model, onDelete }) => {
       if (result.isConfirmed) {
         try{
           const token = await getIdToken(auth.currentUser);
-          const res = await fetch(`http://localhost:5000/finance-all/${model._id}`, {
+          const res = await fetch(`https://b12-a10-server-finease.vercel.app/finance-all/${model._id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

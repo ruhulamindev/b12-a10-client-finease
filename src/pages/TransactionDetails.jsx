@@ -12,7 +12,7 @@ const TransactionDetails = () => {
   const { user } = use(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/finance-all/${id}`, {
+    fetch(`https://b12-a10-server-finease.vercel.app/finance-all/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },

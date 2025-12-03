@@ -12,7 +12,7 @@ const MyTransactions = () => {
 
   // Initial Load---Fetch only user's data
   useEffect(() => {
-    fetch(`http://localhost:5000/finance-all?email=${user.email}`, {
+    fetch(`https://b12-a10-server-finease.vercel.app/finance-all?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -34,7 +34,7 @@ const MyTransactions = () => {
       if (!sortBy || !order) return;
 
       const res = await fetch(
-        `http://localhost:5000/finance-all?email=${user.email}&sortBy=${sortBy}&order=${order}`,
+        `https://b12-a10-server-finease.vercel.app/finance-all?email=${user.email}&sortBy=${sortBy}&order=${order}`,
         {
           headers: { authorization: `Bearer ${user.accessToken}` },
         }

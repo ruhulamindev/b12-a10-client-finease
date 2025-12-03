@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Pie, Bar } from "react-chartjs-2";
 import {
@@ -10,6 +10,8 @@ import {
   LinearScale,
   BarElement,
 } from "chart.js";
+import AuthContext from "../contexts/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 ChartJS.register(
   ArcElement,
@@ -21,6 +23,7 @@ ChartJS.register(
 );
 
 const Reports = () => {
+  const { user } = useContext(AuthContext);
   const [transactions, setTransactions] = useState([]);
   const [monthFilter, setMonthFilter] = useState("");
   const [summary, setSummary] = useState({
@@ -28,11 +31,21 @@ const Reports = () => {
     totalExpense: 0,
     balance: 0,
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!user?.accessToken) return;
+      setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5000/finance-all");
+        const res = await axios.get(
+          "https://b12-a10-server-finease.vercel.app/finance-all",
+          {
+            headers: {
+              authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        );
         let data = res.data;
 
         // Filter by month if selected
@@ -53,15 +66,17 @@ const Reports = () => {
         setSummary({
           totalIncome,
           totalExpense,
-          balance: totalIncome + totalExpense,
+          balance: totalIncome - totalExpense,
         });
       } catch (err) {
-        console.error(err);
+        console.error("Failed to fetch user transactions:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, [monthFilter]);
+  }, [user?.accessToken, monthFilter]);
 
   // Pie Chart Data (Category-wise Expense)
   const expenseCategories = {};
@@ -112,9 +127,19 @@ const Reports = () => {
     ],
   };
 
+  if (loading) {
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-4 bg-gray-100 p-2 rounded">Reports</h2>
+      <h2 className="text-2xl font-bold text-center mb-4 bg-gray-100 p-2 rounded">
+        Reports
+      </h2>
 
       {/* Summary Cards */}
       <div className="grid md:grid-cols-3 gap-4 mb-6">
