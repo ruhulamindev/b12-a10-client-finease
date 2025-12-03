@@ -1,16 +1,87 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Website Name: Finance
 
-Currently, two official plugins are available:
+🌟 FinEase – Personal Finance Management Web App
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+FinEase একটি আধুনিক Personal Finance Management ওয়েব অ্যাপ যেখানে ব্যবহারকারীরা তাদের আয়, খরচ এবং সেভিংস লক্ষ্য সহজেই ট্র্যাক করতে পারে।
+ব্যবহারকারীরা ট্রানজ্যাকশন অ্যাড করতে পারে, আপডেট/ডিলিট করতে পারে, এবং বিভিন্ন চার্ট ও রিপোর্টের মাধ্যমে আর্থিক বিশ্লেষণ পেতে পারে।
 
-## React Compiler
+🔗 Live Links
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔴Live Site URL on Client Side : (Add Your Live URL Here)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+- 🔐 Email & Password + Google Authentication
+- 💸 Complete CRUD: Add, View, Update, Delete Transaction
+- 📊 Dynamic Charts & Reports: Pie Chart, Bar Chart
+- 🛡️ Protected Routes: Authorized users only
+- 🌗 Light/Dark Mode Support
+- ⚡ Fast Performance, Minimal UI
+- 📱 Fully Responsive Design
+
+## 🧰 Tech Stack
+### Frontend:
+- React, React Router
+- TailwindCSS
+- Firebase Athentication
+- Axios
+- SweetAlert / React Hot Toast
+- Recharts
+
+### 🎨 UI & Animation
+Framer Motion
+React Awesome Reveal
+React Simple Typewriter
+
+### ⚙️ Backend
+Node.js, Express.js
+MongoDB, Mongoose
+JWT Authentication
+CORS, Dotenv
+
+### 🚀 Hosting
+Client: Netlify / Surge / Firebase
+Server: Vercel
+
+### 📂 Core Pages
+🏠 Home
+✍️ Add Transaction (Protected)
+📃 My Transactions (Protected)
+📝 Update Transaction (Protected)
+👁️ Transaction Details (Protected)
+📊 Reports (Protected)
+👤 Profile (Protected)
+❌ 404 Not Found
+
+### 🔐 Authentication
+Email + Password Register/Login
+Google Login
+Password validation (Uppercase, Lowercase, 6+ characters)
+User info stored in DB
+Secure JWT based access
+Logout with toast message
+
+### ✨ Transaction Management
+Add transaction
+View user-specific transactions
+View single transaction details
+Update transaction
+Delete with confirmation
+Instant UI update without page reload
+
+### 📊 Reports & Insights
+Category-wise Pie Chart
+Monthly Bar Chart
+Financial summary card
+Filter by month
+
+### ⚙️ Additional Features
+Loading Spinner
+Toast/SweetAlert notification
+Sort by date/amount (Backend)
+Light/Dark Mode
+Responsive design
+Error safe routing on reload
+
