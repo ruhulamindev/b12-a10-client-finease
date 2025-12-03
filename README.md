@@ -8,7 +8,7 @@ FinEase একটি আধুনিক Personal Finance Management ওয়ে
 
 🔗 Live Links
 
-🔴Live Site URL on Client Side : (Add Your Live URL Here)
+🔴Live Site URL on Client Side : https://b12-a10-client-finease.netlify.app/
 
 ---
 
