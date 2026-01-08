@@ -35,11 +35,11 @@ const Navbar = () => {
 
   return (
     <div
-      className="mb-[-55px] bg-base-100 shadow-sm"
+      className="mb-[-55px] shadow-sm"
       style={{ backgroundColor: "var(--card-bg)" }}
     >
       <MyContainer>
-        <div className="navbar">
+        <div className="navbar p-0">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -218,7 +218,7 @@ const Navbar = () => {
               </ul>
             </motion.div>
           </div>
-          <div className="navbar-end mr-3 space-x-2 flex items-center">
+          <div className="navbar-end space-x-2 flex items-center">
             {/* Dark/Light Mode Incomplete Just Show */}
             {user && (
               <div

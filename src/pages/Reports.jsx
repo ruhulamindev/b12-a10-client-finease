@@ -12,6 +12,8 @@ import {
 } from "chart.js";
 import AuthContext from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MyContainer from "../components/MyContainer";
+
 
 ChartJS.register(
   ArcElement,
@@ -136,7 +138,7 @@ const Reports = () => {
   }
 
   return (
-    <div className="p-6">
+    <MyContainer className="p-6">
       <h2 className="text-2xl font-bold text-center mb-4 p-2 rounded">
         Reports
       </h2>
@@ -182,7 +184,7 @@ const Reports = () => {
           <Bar data={barData} />
         </div>
       </div>
-    </div>
+    </MyContainer>
   );
 };
 

@@ -2,6 +2,7 @@ import { use, useEffect, useState } from "react";
 import CardModel from "../components/CardModel";
 import LoadingSpinner from "../components/LoadingSpinner";
 import AuthContext from "../contexts/AuthContext";
+import MyContainer from "../components/MyContainer";
 
 const MyTransactions = () => {
   const { user } = use(AuthContext);
@@ -56,7 +57,7 @@ const MyTransactions = () => {
   }
 
   return (
-    <div className="p-4">
+    <MyContainer className="p-4">
       <h2 className="text-2xl font-bold mb-4 text-center text-purple-500">
         My Transactions
       </h2>
@@ -109,7 +110,7 @@ const MyTransactions = () => {
           <CardModel key={model._id} model={model} onDelete={handleDelete} />
         ))}
       </div>
-    </div>
+    </MyContainer>
   );
 };
 

@@ -12,7 +12,9 @@ const Footer = () => {
   return (
     <div className="app-card">
       <MyContainer>
-        <footer className="footer sm:footer-horizontal p-10">
+        <footer
+          className="flex flex-col lg:flex-row lg:justify-between items-start gap-6 py-10"
+        >
           {/* Logo and Website Name */}
           <motion.div
             variants={cardVariants}
@@ -37,6 +39,7 @@ const Footer = () => {
           </motion.div>
           {/* footer link */}
           <motion.div
+            className="flex flex-col"
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
