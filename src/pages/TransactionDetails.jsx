@@ -2,6 +2,8 @@ import React, { use, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import AuthContext from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MyContainer from "../components/MyContainer";
+
 
 const TransactionDetails = () => {
   const navigate = useNavigate();
@@ -62,6 +64,7 @@ const TransactionDetails = () => {
   }
 
   return (
+    <MyContainer>
     <div className="max-w-md mx-auto app-card rounded-xl shadow-lg overflow-hidden mt-8 mb-8 border border-gray-200">
       <div className="relative  px-6 py-6">
         {/* 🔙 Back Button */}
@@ -112,6 +115,7 @@ const TransactionDetails = () => {
         </div>
       </div>
     </div>
+    </MyContainer>
   );
 };
 

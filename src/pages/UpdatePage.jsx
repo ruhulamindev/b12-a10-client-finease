@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { getIdToken } from "firebase/auth";
 import { auth } from "./../fairbase/fairbase.config";
-import AuthContext from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MyContainer from "../components/MyContainer";
+
 
 const UpdatePage = () => {
   const { id } = useParams();
@@ -94,6 +95,7 @@ const UpdatePage = () => {
     );
 
   return (
+    <MyContainer>
     <div className="max-w-xl mx-auto app-card shadow-md p-6 rounded-lg mt-6 mb-4">
       <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
         Update Transaction
@@ -187,6 +189,7 @@ const UpdatePage = () => {
         </button>
       </form>
     </div>
+    </MyContainer>
   );
 };
 

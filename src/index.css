@@ -5,7 +5,6 @@
 :root {
   --bg-color: #FAFAFA;
   --text-color: #111111;
-  --card-bg: #dfdddc;
   --card-bg: #ffffff;
   --border-color: #e5e7eb; 
 }
@@ -41,7 +40,6 @@ input::placeholder,
 textarea::placeholder {
   color: #9ca3af;
 }
-
 
 input:focus,
 select:focus,

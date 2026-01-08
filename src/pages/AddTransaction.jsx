@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { toast } from "react-toastify";
+import MyContainer from "../components/MyContainer";
+
 
 const AddTransaction = () => {
   const { user } = useContext(AuthContext);
@@ -41,6 +43,7 @@ const AddTransaction = () => {
   };
 
   return (
+    <MyContainer>
     <div className="max-w-xl mx-auto shadow-md p-6 rounded-lg mt-6 mb-4 app-card">
       <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
         Add Transaction
@@ -136,6 +139,7 @@ const AddTransaction = () => {
         </button>
       </form>
     </div>
+    </MyContainer>
   );
 };
 
