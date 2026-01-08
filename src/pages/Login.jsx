@@ -52,7 +52,7 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-300 via-purple-200 to-pink-300 p-6">
+    <div className="min-h-screen flex items-center justify-center to-pink-300 p-6">
       <MyContainer>
         {/* autofill fixed */}
         <style>
@@ -66,7 +66,7 @@ const Login = () => {
       }
     `}
         </style>
-        <div className="bg-white shadow-xl rounded-2xl w-full mx-auto max-w-md p-8">
+        <div className="app-card shadow-xl rounded-2xl w-full mx-auto max-w-md p-8">
           {/* title */}
           <h2 className="text-3xl font-bold text-center mb-6 text-purple-600">
             Sign In

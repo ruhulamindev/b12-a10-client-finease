@@ -10,9 +10,9 @@ const Footer = () => {
   };
 
   return (
-    <div className="bg-base-200">
+    <div className="app-card">
       <MyContainer>
-        <footer className="footer sm:footer-horizontal text-base-content p-10">
+        <footer className="footer sm:footer-horizontal p-10">
           {/* Logo and Website Name */}
           <motion.div
             variants={cardVariants}
@@ -25,11 +25,11 @@ const Footer = () => {
               <img
                 src="/download.png"
                 alt="Logo"
-                className="w-10 h-10 border border-4 rounded-full"
+                className="w-10 h-10 border-4 rounded-full"
               />
               <span className="text-2xl font-bold">Finance</span>
             </div>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-400 text-sm">
               Your trusted platform to manage finances,
               <br />
               track transactions, and analyze reports effortlessly.

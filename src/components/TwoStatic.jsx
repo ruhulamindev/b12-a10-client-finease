@@ -3,7 +3,7 @@ import React from "react";
 const TwoStatic = () => {
   return (
     <div>
-      <section className="my-4 p-6 bg-blue-50 rounded-lg">
+      <section className="my-4 p-6 app-card rounded-lg">
         <h2 className="text-2xl font-bold mb-2">Budgeting Tips</h2>
         <ul className="list-disc ml-6">
           <li>Track your expenses daily</li>
@@ -11,7 +11,7 @@ const TwoStatic = () => {
           <li>Prioritize needs over wants</li>
         </ul>
       </section>
-      <section className="my-4 p-6 bg-green-50 rounded-lg">
+      <section className="my-4 p-6 app-card rounded-lg">
         <h2 className="text-2xl font-bold mb-2">
           Why Financial Planning Matters
         </h2>
@@ -29,7 +29,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">
             How do I create an account?
@@ -42,7 +42,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">What is FinEase?</div>
           <div className="collapse-content text-sm">
@@ -53,7 +53,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">
             How do I add a transaction?
@@ -66,7 +66,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">
             Can I view my past transactions?
@@ -79,7 +79,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">
             How do I generate reports?
@@ -92,7 +92,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">
             What should I do if I forget my password?
@@ -105,7 +105,7 @@ const TwoStatic = () => {
 
         <section
           tabIndex={0}
-          className="collapse collapse-arrow bg-base-100 border border-base-300 rounded-lg"
+          className="collapse collapse-arrow app-card border border-base-300 rounded-lg"
         >
           <div className="collapse-title font-semibold">Is my data secure?</div>
           <div className="collapse-content text-sm">

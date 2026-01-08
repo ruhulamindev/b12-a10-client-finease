@@ -52,21 +52,21 @@ const Overview = () => {
   return (
     <div>
       <section className="grid grid-cols-1 md:grid-cols-3 mb-4 gap-4 my-2">
-        <div className="p-4 bg-blue-500 rounded-lg shadow-md text-center">
-          <h3 className="text-lg font-bold text-white">Total Amount</h3>
-          <p className="text-2xl font-bold text-white">
+        <div className="p-4 app-card rounded-lg shadow-md text-center">
+          <h3 className="text-lg font-bold">Total Amount</h3>
+          <p className="text-2xl font-bold">
             ${overview.totalBalance}
           </p>
         </div>
-        <div className="p-4 bg-green-500 rounded-lg shadow-md text-center">
-          <h3 className="text-lg font-bold text-white">Income</h3>
-          <p className="text-2xl font-bold text-white">
+        <div className="p-4 app-card rounded-lg shadow-md text-center">
+          <h3 className="text-lg font-bold">Income</h3>
+          <p className="text-2xl font-bold">
             ${overview.totalIncome}
           </p>
         </div>
-        <div className="p-4 bg-red-500 rounded-lg shadow-md text-center">
-          <h3 className="text-lg font-bold text-white">Expenses</h3>
-          <p className="text-2xl font-bold text-white">
+        <div className="p-4 app-card rounded-lg shadow-md text-center">
+          <h3 className="text-lg font-bold">Expenses</h3>
+          <p className="text-2xl font-bold">
             ${overview.totalExpense}
           </p>
         </div>

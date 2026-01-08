@@ -34,7 +34,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="mb-[-55px] bg-base-100 shadow-sm">
+    <div
+      className="mb-[-55px] bg-base-100 shadow-sm"
+      style={{ backgroundColor: "var(--card-bg)" }}
+    >
       <MyContainer>
         <div className="navbar">
           <div className="navbar-start">
@@ -62,7 +65,11 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm gap-1 dropdown-content bg-base-100 rounded-box z-1 mt-4 w-52 p-2 shadow"
+                className="menu menu-sm gap-1 dropdown-content rounded-box z-1 mt-4 w-52 p-2 shadow border px-4 py-4"
+                style={{
+                  backgroundColor: "var(--card-bg)",
+                  color: "var(--text-color)",
+                }}
               >
                 <li>
                   <NavLink
@@ -263,7 +270,7 @@ const Navbar = () => {
                     tabIndex={0}
                     className="btn btn-ghost btn-circle avatar"
                   >
-                    <div className="w-10 rounded-full border-green-500 rounded-full border-2">
+                    <div className="w-10 border-green-500 rounded-full border-2">
                       <img
                         src={user.photoURL || "default-profile.png"}
                         alt="profile"
@@ -272,7 +279,11 @@ const Navbar = () => {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-max mt-4 gap-1"
+                    className="dropdown-content menu p-2 shadow rounded-box w-max mt-4 gap-1"
+                    style={{
+                      backgroundColor: "var(--card-bg)",
+                      color: "var(--text-color)",
+                    }}
                   >
                     <li className="bg-gray-200">
                       <h1 className="font-semibold text-xl">

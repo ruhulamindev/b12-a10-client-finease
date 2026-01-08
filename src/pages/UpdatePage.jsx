@@ -94,7 +94,7 @@ const UpdatePage = () => {
     );
 
   return (
-    <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg mt-6 mb-4">
+    <div className="max-w-xl mx-auto app-card shadow-md p-6 rounded-lg mt-6 mb-4">
       <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
         Update Transaction
       </h2>

@@ -62,7 +62,7 @@ const TransactionDetails = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-gradient-to-l from-sky-200 via-green-200 to-red-200 rounded-xl shadow-lg overflow-hidden mt-8 mb-8 border border-gray-200">
+    <div className="max-w-md mx-auto app-card rounded-xl shadow-lg overflow-hidden mt-8 mb-8 border border-gray-200">
       <div className="relative  px-6 py-6">
         {/* 🔙 Back Button */}
         <button
@@ -78,33 +78,33 @@ const TransactionDetails = () => {
 
         <div className="space-y-3">
           <div className="flex justify-between border border-gray-200 p-2">
-            <span className="font-semibold text-gray-700">Type :</span>
-            <span className="text-gray-900 capitalize">{model.type}</span>
+            <span className="font-semibold">Type :</span>
+            <span className=" capitalize">{model.type}</span>
           </div>
 
-          <div className="text-left border border-gray-200 p-2">
-            <span className="font-semibold text-gray-700">Description : </span>
-            <span className="text-gray-900">{model.description}</span>
+          <div className="flex justify-between text-left border border-gray-200 p-2">
+            <span className="font-semibold">Description : </span>
+            <span className="">{model.description}</span>
           </div>
 
           <div className="flex justify-between border border-gray-200 p-2">
-            <span className="font-semibold text-gray-700">Amount :</span>
+            <span className="font-semibold ">Amount :</span>
             <span className="text-green-600 font-bold">{model.amount}$</span>
           </div>
 
           <div className="flex justify-between border border-gray-200 p-2">
-            <span className="font-semibold text-gray-700">Date :</span>
-            <span className="text-gray-900">
+            <span className="font-semibold">Date :</span>
+            <span className="">
               {new Date(model.date).toLocaleDateString()}
             </span>
           </div>
 
           <div className="flex justify-between border border-gray-200 p-2">
-            <span className="font-semibold text-gray-700">Category :</span>
-            <span className="text-gray-900 capitalize">{model.category}</span>
+            <span className="font-semibold">Category :</span>
+            <span className=" capitalize">{model.category}</span>
           </div>
           <div className="flex justify-between border border-gray-200 bg-gray-300 p-2 rounded-md shadow-sm">
-            <span className="font-semibold text-gray-700">
+            <span className="font-semibold">
               Total Amount in "{model.category}" ({model.type}) :
             </span>
             <span className="text-blue-700 font-bold">{totalAmount}$</span>

@@ -137,28 +137,28 @@ const Reports = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-4 bg-gray-100 p-2 rounded">
+      <h2 className="text-2xl font-bold text-center mb-4 p-2 rounded">
         Reports
       </h2>
 
       {/* Summary Cards */}
       <div className="grid md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-green-500 text-white p-4 rounded-lg text-center">
+        <div className="app-card p-4 rounded-lg text-center">
           <h3 className="text-lg font-bold">Income</h3>
           <p className="text-2xl font-bold">{summary.totalIncome}$</p>
         </div>
-        <div className="bg-red-500 text-white p-4 rounded-lg text-center">
+        <div className="app-card p-4 rounded-lg text-center">
           <h3 className="text-lg font-bold">Expense</h3>
           <p className="text-2xl font-bold">{summary.totalExpense}$</p>
         </div>
-        <div className="bg-blue-500 text-white p-4 rounded-lg text-center">
+        <div className="app-card p-4 rounded-lg text-center">
           <h3 className="text-lg font-bold">Total Balance</h3>
           <p className="text-2xl font-bold">{summary.balance}$</p>
         </div>
       </div>
 
       {/* Month Filter */}
-      <div className="mb-6 text-center bg-gray-100 p-2 rounded">
+      <div className="mb-6 text-center app-card p-2 rounded">
         <label className="mr-2 font-bold">Filter by Month:</label>
         <input
           type="month"
@@ -170,14 +170,14 @@ const Reports = () => {
 
       {/* Charts */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white shadow-md p-6 rounded-lg">
+        <div className="app-card shadow-md p-6 rounded-lg">
           <h3 className="font-bold text-lg mb-2 text-center">
             Category-wise Expense
           </h3>
           <Pie data={pieData} />
         </div>
 
-        <div className="bg-white shadow-md p-6 rounded-lg">
+        <div className="app-card shadow-md p-6 rounded-lg">
           <h3 className="font-bold text-lg mb-2 text-center">Monthly Totals</h3>
           <Bar data={barData} />
         </div>

@@ -25,8 +25,8 @@ const Profile = () => {
     setEditing(false);
   };
   return (
-    <div className="bg-gradient-to-r from-blue-50 via-blue-100 to-blue-200 min-h-screen flex flex-col items-center justify-center p-6">
-      <div className="bg-gradient-to-r from-green-200 via-blue-200 to-purple-300 shadow-md rounded-xl p-6 w-full max-w-md">
+    <div className="min-h-screen flex flex-col items-center justify-center p-6">
+      <div className="app-card shadow-md rounded-xl p-6 w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4 text-center text-purple-800">
           My Profile
         </h1>
@@ -35,10 +35,10 @@ const Profile = () => {
           <img
             src={user?.photoURL || "https://i.ibb.co/ZYW3VTp/brown-brim.png"}
             alt="avatar"
-            className="w-24 h-24 rounded-full border-green-500 rounded-full border-2 mb-2"
+            className="w-24 h-24 border-green-500 rounded-full border-2 mb-2"
           />
           <p className="text-lg font-bold">{user?.displayName || "No Name"}</p>
-          <p className="text-gray-800">{user?.email}</p>
+          <p>{user?.email}</p>
         </div>
 
         {!editing && (

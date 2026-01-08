@@ -41,7 +41,7 @@ const AddTransaction = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-lg mt-6 mb-4">
+    <div className="max-w-xl mx-auto shadow-md p-6 rounded-lg mt-6 mb-4 app-card">
       <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
         Add Transaction
       </h2>
@@ -115,7 +115,7 @@ const AddTransaction = () => {
             required
           />
         </div>
-        <div className="mb-4 bg-gray-100 p-2 rounded">
+        <div className="mb-4 app-card p-2 rounded">
           <p>
             Name: <strong>{user?.displayName || "Default Name"}</strong>
           </p>

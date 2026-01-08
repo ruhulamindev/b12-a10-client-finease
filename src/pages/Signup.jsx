@@ -82,7 +82,7 @@ const Signup = () => {
     }
   };
   return (
-    <div className="min-h-md flex items-center justify-center bg-gradient-to-r from-green-200 via-blue-200 to-purple-300 p-6">
+    <div className="min-h-md flex items-center justify-center p-6">
       <MyContainer>
         {/* autofill fixed */}
         <style>
@@ -97,7 +97,7 @@ const Signup = () => {
 
     `}
         </style>
-        <div className="w-full mx-auto max-w-md bg-white p-8 rounded-xl shadow-lg">
+        <div className="w-full mx-auto max-w-md app-card p-8 rounded-xl shadow-lg">
           <h2 className="text-3xl font-bold text-center text-purple-600 mb-6">
             Sign Up
           </h2>
