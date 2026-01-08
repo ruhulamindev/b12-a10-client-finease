@@ -65,7 +65,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm gap-1 dropdown-content rounded-box z-1 mt-4 w-52 p-2 shadow border px-4 py-4"
+                className="menu menu-sm gap-2 dropdown-content rounded-box z-1 mt-4 w-52 p-2 shadow border px-4 py-4"
                 style={{
                   backgroundColor: "var(--card-bg)",
                   color: "var(--text-color)",
@@ -118,7 +118,7 @@ const Navbar = () => {
                   </>
                 )}
 
-                <li>
+                {/* <li>
                   <NavLink
                     to="/add-transactions"
                     className={({ isActive }) =>
@@ -131,7 +131,7 @@ const Navbar = () => {
                   >
                     Add Transaction
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     to="/my-transactions"
@@ -146,7 +146,7 @@ const Navbar = () => {
                     My Transactions
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/reports"
                     className={({ isActive }) =>
@@ -158,6 +158,20 @@ const Navbar = () => {
                     }
                   >
                     Reports
+                  </NavLink>
+                </li> */}
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      `btn ${
+                        isActive
+                          ? "bg-purple-500 text-white border-none"
+                          : "btn-outline"
+                      }`
+                    }
+                  >
+                    Dasboard
                   </NavLink>
                 </li>
               </ul>
@@ -185,7 +199,7 @@ const Navbar = () => {
                     Home
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/add-transactions"
                     className={({ isActive }) =>
@@ -194,7 +208,7 @@ const Navbar = () => {
                   >
                     Add Transaction
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink
                     to="/my-transactions"
@@ -205,7 +219,7 @@ const Navbar = () => {
                     My Transactions
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/reports"
                     className={({ isActive }) =>
@@ -213,6 +227,16 @@ const Navbar = () => {
                     }
                   >
                     Reports
+                  </NavLink>
+                </li> */}
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive ? "text-purple-500" : ""
+                    }
+                  >
+                    Dasboard
                   </NavLink>
                 </li>
               </ul>
@@ -279,13 +303,13 @@ const Navbar = () => {
                   </label>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content menu p-2 shadow rounded-box w-max mt-4 gap-1"
+                    className="dropdown-content menu px-4 py-4 shadow-2xl rounded-box w-max mt-4 gap-2"
                     style={{
                       backgroundColor: "var(--card-bg)",
                       color: "var(--text-color)",
                     }}
                   >
-                    <li className="bg-gray-200">
+                    <li className="app-card">
                       <h1 className="font-semibold text-xl">
                         {user.displayName || "No Name"}
                       </h1>
@@ -306,12 +330,26 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <a className="btn border-gray-500 bg-white">Settings</a>
+                      <NavLink
+                        to="/dashboard"
+                        className={({ isActive }) =>
+                          `btn ${
+                            isActive
+                              ? "bg-purple-500 text-white border-none"
+                              : "btn-outline"
+                          }`
+                        }
+                      >
+                        Dashboard
+                      </NavLink>
+                    </li>
+                    <li>
+                      <a className="btn border-gray-500">Settings</a>
                     </li>
                     <li>
                       <button
                         onClick={handleLogout}
-                        className="btn border-gray-500 bg-white"
+                        className="btn border-gray-500"
                       >
                         Sign Out
                       </button>

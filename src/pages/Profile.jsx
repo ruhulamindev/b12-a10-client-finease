@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/useAuth";
 /* eslint-disable-next-line no-unused-vars */
 import { useSpring, animated } from "@react-spring/web";
 import LoadingSpinner from "../components/LoadingSpinner";
+import MyContainer from "../components/MyContainer";
 
 const Profile = () => {
   const { user, updateUserProfile } = useAuth();
@@ -25,6 +26,7 @@ const Profile = () => {
     setEditing(false);
   };
   return (
+    <MyContainer>
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
       <div className="app-card shadow-md rounded-xl p-6 w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4 text-center text-purple-800">
@@ -55,14 +57,14 @@ const Profile = () => {
             style={animation}
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
           >
-            <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
+            <div className="app-card rounded-xl shadow-lg p-6 w-full max-w-md">
               <h2 className="text-xl font-bold mb-4 text-center text-purple-800">
                 Update Profile
               </h2>
 
               <form onSubmit={handleUpdate} className="space-y-4">
                 <div>
-                  <label className="block text-gray-700">Display Name</label>
+                  <label className="block">Display Name</label>
                   <input
                     type="text"
                     value={displayName}
@@ -71,7 +73,7 @@ const Profile = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-700">Photo URL</label>
+                  <label className="block">Photo URL</label>
                   <input
                     type="text"
                     value={photoURL}
@@ -102,6 +104,7 @@ const Profile = () => {
         )}
       </div>
     </div>
+    </MyContainer>
   );
 };
 

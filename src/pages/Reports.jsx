@@ -12,8 +12,6 @@ import {
 } from "chart.js";
 import AuthContext from "../contexts/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
-import MyContainer from "../components/MyContainer";
-
 
 ChartJS.register(
   ArcElement,
@@ -138,10 +136,8 @@ const Reports = () => {
   }
 
   return (
-    <MyContainer className="p-6">
-      <h2 className="text-2xl font-bold text-center mb-4 p-2 rounded">
-        Reports
-      </h2>
+    <div className="m-2">
+      <h2 className="text-2xl font-bold text-center mb-4 rounded">Reports</h2>
 
       {/* Summary Cards */}
       <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -160,7 +156,7 @@ const Reports = () => {
       </div>
 
       {/* Month Filter */}
-      <div className="mb-6 text-center app-card p-2 rounded">
+      <div className="mb-6 text-center app-card text-white p-2 rounded">
         <label className="mr-2 font-bold">Filter by Month:</label>
         <input
           type="month"
@@ -184,7 +180,7 @@ const Reports = () => {
           <Bar data={barData} />
         </div>
       </div>
-    </MyContainer>
+    </div>
   );
 };
 

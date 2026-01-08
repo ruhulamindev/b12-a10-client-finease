@@ -35,7 +35,7 @@ const Overview = () => {
         }
       } catch (err) {
         console.error("Failed to fetch overview:", err);
-      } 
+      }
 
       // finally {
       //   setLoading(false);
@@ -54,21 +54,15 @@ const Overview = () => {
       <section className="grid grid-cols-1 md:grid-cols-3 mb-4 gap-4 my-2">
         <div className="p-4 app-card rounded-lg shadow-md text-center">
           <h3 className="text-lg font-bold">Total Amount</h3>
-          <p className="text-2xl font-bold">
-            ${overview.totalBalance}
-          </p>
+          <p className="text-2xl font-bold">${overview.totalBalance}</p>
         </div>
         <div className="p-4 app-card rounded-lg shadow-md text-center">
           <h3 className="text-lg font-bold">Income</h3>
-          <p className="text-2xl font-bold">
-            ${overview.totalIncome}
-          </p>
+          <p className="text-2xl font-bold">${overview.totalIncome}</p>
         </div>
         <div className="p-4 app-card rounded-lg shadow-md text-center">
           <h3 className="text-lg font-bold">Expenses</h3>
-          <p className="text-2xl font-bold">
-            ${overview.totalExpense}
-          </p>
+          <p className="text-2xl font-bold">${overview.totalExpense}</p>
         </div>
       </section>
     </div>

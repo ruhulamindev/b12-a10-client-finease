@@ -11,6 +11,8 @@ import TransactionDetails from "../pages/TransactionDetails";
 import PrivateRoute from "../components/PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
 import UpdatePage from "../pages/UpdatePage";
+import DashboardLayout from "../layout/DashboardLayout";
+import DashboardHome from "../components/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -38,20 +40,23 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/add-transactions",
+        path: "/dashboard",
         element: (
           <PrivateRoute>
-            <AddTransaction />
+            <DashboardLayout />
           </PrivateRoute>
         ),
-      },
-      {
-        path: "/reports",
-        element: (
-          <PrivateRoute>
-            <Reports />
-          </PrivateRoute>
-        ),
+        children: [
+          { index: true, element: <DashboardHome /> },
+          {
+            path: "add-transactions",
+            element: <AddTransaction />,
+          },
+          {
+            path: "reports",
+            element: <Reports />,
+          },
+        ],
       },
       {
         path: "/transaction-details/:id",

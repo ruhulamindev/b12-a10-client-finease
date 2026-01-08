@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
 import AuthContext from "../contexts/AuthContext";
 import { toast } from "react-toastify";
-import MyContainer from "../components/MyContainer";
-
 
 const AddTransaction = () => {
   const { user } = useContext(AuthContext);
@@ -43,103 +41,103 @@ const AddTransaction = () => {
   };
 
   return (
-    <MyContainer>
-    <div className="max-w-xl mx-auto shadow-md p-6 rounded-lg mt-6 mb-4 app-card">
-      <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
-        Add Transaction
-      </h2>
+    <div className="m-2">
+      <div className="max-full mx-auto shadow-md p-6 rounded-lg app-card">
+        <h2 className="text-2xl font-bold text-purple-500 text-center mb-4">
+          Add Transaction
+        </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Type */}
-        <div>
-          <label className="font-medium mb-1 block">Type</label>
-          <select
-            type="text"
-            name="type"
-            className="w-full border rounded p-2"
-            required
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Type */}
+          <div>
+            <label className="font-medium mb-1 block">Type</label>
+            <select
+              type="text"
+              name="type"
+              className="w-full border rounded p-2"
+              required
+            >
+              <option value="">Select Type</option>
+              <option value="Income">Income</option>
+              <option value="Expense">Expense</option>
+            </select>
+          </div>
+
+          {/* Category */}
+          <div>
+            <label className="font-medium mb-1 block">Category</label>
+            <select
+              name="category"
+              defaultValue={""}
+              className="w-full border rounded p-2"
+              required
+            >
+              <option value="disabled">Select Category</option>
+              <option>Food</option>
+              <option>Shopping</option>
+              <option>Salary</option>
+              <option>Gift</option>
+              <option>Medicine</option>
+              <option>Transport</option>
+            </select>
+          </div>
+
+          {/* Amount */}
+          <div>
+            <label className="font-medium mb-1 block">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              className="w-full border rounded p-2"
+              placeholder="Enter amount"
+              required
+            />
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="font-medium mb-1 block">Description</label>
+            <textarea
+              name="description"
+              className="w-full border rounded p-2"
+              rows="2"
+              placeholder="Enter description"
+              required
+            ></textarea>
+          </div>
+
+          {/* Date */}
+          <div>
+            <label className="font-medium mb-1 block">Date</label>
+            <input
+              type="date"
+              name="date"
+              className="w-full border rounded p-2"
+              required
+            />
+          </div>
+          <div className="mb-4 app-card p-2 rounded">
+            <p>
+              Name: <strong>{user?.displayName || "Default Name"}</strong>
+            </p>
+            <p>
+              Email: <strong>{user?.email || "example@gmail.com"}</strong>
+            </p>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className={`w-full py-2 rounded font-bold text-white ${
+              isLoading ? "bg-purple-500 cursor-not-allowed" : "bg-purple-500"
+            }`}
+            disabled={isLoading}
           >
-            <option value="">Select Type</option>
-            <option value="Income">Income</option>
-            <option value="Expense">Expense</option>
-          </select>
-        </div>
-
-        {/* Category */}
-        <div>
-          <label className="font-medium mb-1 block">Category</label>
-          <select
-            name="category"
-            defaultValue={""}
-            className="w-full border rounded p-2"
-            required
-          >
-            <option value="disabled">Select Category</option>
-            <option>Food</option>
-            <option>Shopping</option>
-            <option>Salary</option>
-            <option>Gift</option>
-            <option>Medicine</option>
-            <option>Transport</option>
-          </select>
-        </div>
-
-        {/* Amount */}
-        <div>
-          <label className="font-medium mb-1 block">Amount</label>
-          <input
-            type="number"
-            name="amount"
-            className="w-full border rounded p-2"
-            placeholder="Enter amount"
-            required
-          />
-        </div>
-
-        {/* Description */}
-        <div>
-          <label className="font-medium mb-1 block">Description</label>
-          <textarea
-            name="description"
-            className="w-full border rounded p-2"
-            rows="2"
-            placeholder="Enter description"
-            required
-          ></textarea>
-        </div>
-
-        {/* Date */}
-        <div>
-          <label className="font-medium mb-1 block">Date</label>
-          <input
-            type="date"
-            name="date"
-            className="w-full border rounded p-2"
-            required
-          />
-        </div>
-        <div className="mb-4 app-card p-2 rounded">
-          <p>
-            Name: <strong>{user?.displayName || "Default Name"}</strong>
-          </p>
-          <p>
-            Email: <strong>{user?.email || "example@gmail.com"}</strong>
-          </p>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className={`w-full py-2 rounded font-bold text-white ${
-            isLoading ? "bg-purple-500 cursor-not-allowed" : "bg-purple-500"
-          }`}
-          disabled={isLoading}
-        >
-          {isLoading ? "Adding..." : "Add Transaction"}
-        </button>
-      </form>
+            {isLoading ? "Adding..." : "Add Transaction"}
+          </button>
+        </form>
+      </div>
     </div>
-    </MyContainer>
   );
 };
 
