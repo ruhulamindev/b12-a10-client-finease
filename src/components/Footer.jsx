@@ -35,7 +35,7 @@ const Footer = () => {
               track transactions, and analyze reports effortlessly.
             </p>
           </motion.div>
-          {/* footer link */}
+          {/* Footer Link */}
           <motion.div
             className="flex flex-col"
             variants={cardVariants}
