@@ -18,7 +18,6 @@ const Login = () => {
 
   const handleSignin = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -34,6 +33,7 @@ const Login = () => {
       toast.error("Please enter a valid email address");
       return;
     }
+    setSubmitting(true);
 
     try {
       await signinUser(email, password);

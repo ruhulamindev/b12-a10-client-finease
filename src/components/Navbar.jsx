@@ -19,6 +19,11 @@ const Navbar = () => {
   });
 
   useEffect(() => {
+    if (!user) {
+      document.documentElement.classList.remove("dark");
+      localStorage.removeItem("theme");
+      return;
+    }
     if (darkMode) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -26,9 +31,14 @@ const Navbar = () => {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [darkMode]);
+  }, [darkMode, user]);
 
   const handleLogout = async () => {
+    setDarkMode(false);
+
+    localStorage.removeItem("theme");
+
+    document.documentElement.classList.remove("dark");
     await logout();
     navigate("/", { replace: true });
   };
@@ -160,20 +170,22 @@ const Navbar = () => {
                     Reports
                   </NavLink>
                 </li> */}
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      `btn ${
-                        isActive
-                          ? "bg-purple-500 text-white border-none"
-                          : "btn-outline"
-                      }`
-                    }
-                  >
-                    Dasboard
-                  </NavLink>
-                </li>
+                {user && (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        `btn ${
+                          isActive
+                            ? "bg-purple-500 text-white border-none"
+                            : "btn-outline"
+                        }`
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </div>
             <NavLink to="/" className="text-2xl md:text-3xl font-bold">
@@ -229,16 +241,18 @@ const Navbar = () => {
                     Reports
                   </NavLink>
                 </li> */}
-                <li>
-                  <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                      isActive ? "text-purple-500" : ""
-                    }
-                  >
-                    Dasboard
-                  </NavLink>
-                </li>
+                {user && (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        isActive ? "text-purple-500" : ""
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                )}
               </ul>
             </motion.div>
           </div>

@@ -12,9 +12,7 @@ const Footer = () => {
   return (
     <div className="app-card">
       <MyContainer>
-        <footer
-          className="flex flex-col lg:flex-row lg:justify-between items-start gap-6 py-10"
-        >
+        <footer className="flex flex-col lg:flex-row lg:justify-between items-start gap-6 py-10">
           {/* Logo and Website Name */}
           <motion.div
             variants={cardVariants}
@@ -31,7 +29,7 @@ const Footer = () => {
               />
               <span className="text-2xl font-bold">Finance</span>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-500 text-sm">
               Your trusted platform to manage finances,
               <br />
               track transactions, and analyze reports effortlessly.
@@ -63,7 +61,7 @@ const Footer = () => {
             <h6 className="footer-title mb-2 font-bold">Social Media Links</h6>
             <div className="flex gap-4">
               <a
-                href="https://www.facebook.com/profile.php?id=61566534111401"
+                href="https://www.facebook.com/labib.bin.mahbub.2024"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-blue-600 transition-colors"
@@ -75,8 +73,6 @@ const Footer = () => {
                 />
               </a>
               <a
-                href="https://twitter.com"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-blue-400 transition-colors"
               >
@@ -87,8 +83,6 @@ const Footer = () => {
                 />
               </a>
               <a
-                href="https://www.linkedin.com/in/md-ruhul-amin-a71b58352"
-                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-blue-700 transition-colors"
               >

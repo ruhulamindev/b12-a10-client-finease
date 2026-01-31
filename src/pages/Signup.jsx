@@ -18,7 +18,6 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
     const fullName = e.target.fullName?.value;
     const email = e.target.email?.value;
     const photoURL = e.target.photoURL?.value;
@@ -65,6 +64,8 @@ const Signup = () => {
       toast.error("Please enter a valid email address");
       return;
     }
+      setSubmitting(true);
+
     try {
       await signupUser(email, password, fullName, photoURL);
       navigate("/");
@@ -72,6 +73,7 @@ const Signup = () => {
       setSubmitting(false);
     }
   };
+  
 
   const handleGoogleSignin = async () => {
     try {
